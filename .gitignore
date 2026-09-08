@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Docs (not for upload)
+docs/
+
 # Python
 __pycache__/
 *.py[cod]
