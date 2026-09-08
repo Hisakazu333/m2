@@ -971,7 +971,7 @@ FUNCTION {proceedings}
   format.bvolume output
   format.number.series output
   address output
-  format.date output
+  format.date "year" output.check
   new.sentence
   organization output
   publisher output
@@ -1172,7 +1172,7 @@ FUNCTION {editor.key.organization.label}
         'key
       if$
     }
-    { author format.lab.names }
+    { editor format.lab.names }
   if$
 }
 
@@ -1309,7 +1309,7 @@ FUNCTION {editor.organization.sort}
         { "The " #4 organization chop.word sortify }
       if$
     }
-    { author sort.format.names }
+    { editor sort.format.names }
   if$
 }
 
