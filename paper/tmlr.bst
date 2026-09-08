@@ -809,7 +809,7 @@ FUNCTION {inbook}
       publisher "publisher" output.check
       address output
     }
-    { format.chapter.pages output.check
+    { format.chapter.pages "chapter and pages" output.check
       new.block
       format.book.crossref output.nonnull
     }
@@ -1244,7 +1244,7 @@ FUNCTION {sort.format.title}
     "An " #3
       "The " #4 t chop.word
     chop.word
-    chop.word
+  chop.word
   sortify
   #1 global.max$ substring$
 }
