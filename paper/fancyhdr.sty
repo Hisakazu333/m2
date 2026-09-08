@@ -101,11 +101,12 @@
         \fancyhead[RE]{\slshape\leftmark}%
         \fancyhead[LO]{\slshape\rightmark}%
         \def\chaptermark##1{%
-          \markboth{\MakeUppercase{\ifnum \c@secnumdepth >\m@ne \if@mainmatter
-              \@chapapp\ \thechapter.\ \fi\fi##1}}{}}%
+          \markboth{\MakeUppercase{%
+            \ifnum \c@secnumdepth >\m@ne \if@mainmatter
+              \@chapapp\ \thechapter. \ \fi\fi##1}}{}}%
         \def\sectionmark##1{%
-          \markright {\MakeUppercase{\ifnum \c@secnumdepth >\z@
-            \thesection.\ \fi##1}}}%
+          \markright {\MakeUppercase{%
+            \ifnum \c@secnumdepth >\z@ \thesection. \ \fi##1}}}%
       }%
     \else
       \def\ps@headings{\ps@f@nch@fancyproto \let\@mkboth\markboth
@@ -114,8 +115,9 @@
         \fancyhead[RE]{\slshape\leftmark}%
         \fancyhead[LO]{\slshape\rightmark}%
         \def\chaptermark##1{%
-          \markright{\MakeUppercase{\ifnum \c@secnumdepth >\m@ne
-            \if@mainmatter \@chapapp\ \thechapter.\ \fi\fi##1}}}%
+          \markright{\MakeUppercase{%
+            \ifnum \c@secnumdepth >\m@ne \if@mainmatter
+              \@chapapp\ \thechapter. \ \fi\fi##1}}}%
         \let\sectionmark\@gobble % Not needed but inserted for safety
       }%
     \fi
@@ -349,9 +351,9 @@
     \def\subsectionmark##1{\markright {\ifnum \c@secnumdepth >\@ne
       \thesubsection\hskip 1em\relax \fi ##1}}}%
    {\def\chaptermark##1{\markboth {\MakeUppercase{\ifnum
-        \c@secnumdepth>\m@ne \@chapapp\ \thechapter.\ \fi ##1}}{}}%
-    \def\sectionmark##1{\markright{\MakeUppercase{\ifnum \c@secnumdepth>\z@
-        \thesection.\ \fi ##1}}}%
+        \c@secnumdepth>\m@ne \@chapapp\ \thechapter. \ \fi ##1}}{}}%
+    \def\sectionmark##1{\markright{\MakeUppercase{\ifnum \c@secnumdepth >\z@
+        \thesection. \ \fi ##1}}}%
    }%
   \def\headrule{{\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
       \hrule\@height\headrulewidth\@width\headwidth
