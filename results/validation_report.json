@@ -1,0 +1,97 @@
+{
+  "started_utc": "2026-09-05T18:15:12.900542+00:00",
+  "python": "3.12.13",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "stages": [
+    {
+      "name": "tests",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/run_tests.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.0767050300000847
+    },
+    {
+      "name": "integrated_experiments",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/run_integrated_experiments.py"
+      ],
+      "returncode": 0,
+      "seconds": 12.693123940000078
+    },
+    {
+      "name": "binary_experiments",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/run_experiments.py"
+      ],
+      "returncode": 0,
+      "seconds": 3.8159148510003433
+    },
+    {
+      "name": "binary_figures",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/make_figures.py"
+      ],
+      "returncode": 0,
+      "seconds": 2.739277131000563
+    },
+    {
+      "name": "integrated_figures",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/make_integrated_figures.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.882083872000294
+    },
+    {
+      "name": "replay",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "examples/replay_example.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.06993021499965835
+    },
+    {
+      "name": "cli",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "m2fh.cli",
+        "configs/B0_original_bayes.json",
+        "--policy",
+        "gate",
+        "--output",
+        "results/cli_example.json"
+      ],
+      "returncode": 0,
+      "seconds": 0.0591247669999575
+    },
+    {
+      "name": "latex",
+      "command": [
+        "latexmk",
+        "-cd",
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "paper/main.tex"
+      ],
+      "returncode": 0,
+      "seconds": 4.328975170999911
+    }
+  ],
+  "success": true,
+  "source_sha256": "e5ba9248ff03ba99e3b3aa58012d8ec37a9dc1ce155feb8f52719d3caa863a0c",
+  "layout_resolution": "One overflowing prose line corrected; clean isolated final TeX build passed; see results/logs/latex_final.txt",
+  "final_pdf_pages": 36
+}

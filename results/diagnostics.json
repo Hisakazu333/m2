@@ -1,0 +1,1216 @@
+{
+  "F0": {
+    "joint": {
+      "loss": "3",
+      "components": {
+        "task": "12/5",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "4"
+      }
+    },
+    "gate": {
+      "loss": "3",
+      "components": {
+        "task": "12/5",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "4"
+      }
+    },
+    "myopic": {
+      "loss": "3",
+      "components": {
+        "task": "12/5",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "4"
+      }
+    },
+    "greedy_voi": {
+      "loss": "3",
+      "components": {
+        "task": "12/5",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "4"
+      }
+    },
+    "verify_then_act": {
+      "loss": "33/10",
+      "components": {
+        "task": "12/5",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "3/50",
+        "false_alarm": "7/50",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "3"
+      }
+    },
+    "never_repair": {
+      "loss": "3",
+      "components": {
+        "task": "12/5",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "4"
+      }
+    },
+    "always_repair": {
+      "loss": "3",
+      "components": {
+        "task": "12/5",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "4"
+      }
+    }
+  },
+  "F1": {
+    "joint": {
+      "loss": "24/5",
+      "components": {
+        "task": "7/2",
+        "verify": "0",
+        "repair": "1",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "9"
+      }
+    },
+    "gate": {
+      "loss": "63/10",
+      "components": {
+        "task": "6",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "10"
+      }
+    },
+    "myopic": {
+      "loss": "63/10",
+      "components": {
+        "task": "6",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "10"
+      }
+    },
+    "greedy_voi": {
+      "loss": "63/10",
+      "components": {
+        "task": "6",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "10"
+      }
+    },
+    "verify_then_act": {
+      "loss": "24/5",
+      "components": {
+        "task": "7/2",
+        "verify": "0",
+        "repair": "1",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "9"
+      }
+    },
+    "never_repair": {
+      "loss": "63/10",
+      "components": {
+        "task": "6",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "10"
+      }
+    },
+    "always_repair": {
+      "loss": "24/5",
+      "components": {
+        "task": "7/2",
+        "verify": "0",
+        "repair": "1",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/10",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "9"
+      }
+    }
+  },
+  "F2": {
+    "joint": {
+      "loss": "28/25",
+      "components": {
+        "task": "21/50",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "2"
+      }
+    },
+    "gate": {
+      "loss": "113/100",
+      "components": {
+        "task": "3/5",
+        "verify": "1/2",
+        "repair": "3/100",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "0",
+        "miss": "0",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "17/10",
+        "REPAIR": "3/10"
+      }
+    },
+    "myopic": {
+      "loss": "28/25",
+      "components": {
+        "task": "21/50",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "2"
+      }
+    },
+    "greedy_voi": {
+      "loss": "28/25",
+      "components": {
+        "task": "21/50",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "2"
+      }
+    },
+    "verify_then_act": {
+      "loss": "113/100",
+      "components": {
+        "task": "3/5",
+        "verify": "1/2",
+        "repair": "3/100",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "0",
+        "miss": "0",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "17/10",
+        "REPAIR": "3/10"
+      }
+    },
+    "never_repair": {
+      "loss": "23/10",
+      "components": {
+        "task": "9/5",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "0",
+        "miss": "0",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "2",
+        "VERIFY": "1"
+      }
+    },
+    "always_repair": {
+      "loss": "28/25",
+      "components": {
+        "task": "21/50",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "2"
+      }
+    }
+  },
+  "F3": {
+    "joint": {
+      "loss": "7/5",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "gate": {
+      "loss": "213/100",
+      "components": {
+        "task": "149/125",
+        "verify": "1/2",
+        "repair": "19/500",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/5",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "REPAIR": "19/50"
+      }
+    },
+    "myopic": {
+      "loss": "7/5",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "greedy_voi": {
+      "loss": "7/5",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "verify_then_act": {
+      "loss": "213/100",
+      "components": {
+        "task": "149/125",
+        "verify": "1/2",
+        "repair": "19/500",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/5",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "REPAIR": "19/50"
+      }
+    },
+    "never_repair": {
+      "loss": "18/5",
+      "components": {
+        "task": "3",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "5"
+      }
+    },
+    "always_repair": {
+      "loss": "7/5",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    }
+  },
+  "F4": {
+    "joint": {
+      "loss": "66/25",
+      "components": {
+        "task": "34/25",
+        "verify": "1/2",
+        "repair": "19/50",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/5",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "REPAIR": "19/50"
+      }
+    },
+    "gate": {
+      "loss": "66/25",
+      "components": {
+        "task": "34/25",
+        "verify": "1/2",
+        "repair": "19/50",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/5",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "REPAIR": "19/50"
+      }
+    },
+    "myopic": {
+      "loss": "18/5",
+      "components": {
+        "task": "3",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "5"
+      }
+    },
+    "greedy_voi": {
+      "loss": "18/5",
+      "components": {
+        "task": "3",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "5"
+      }
+    },
+    "verify_then_act": {
+      "loss": "66/25",
+      "components": {
+        "task": "34/25",
+        "verify": "1/2",
+        "repair": "19/50",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/5",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "REPAIR": "19/50"
+      }
+    },
+    "never_repair": {
+      "loss": "371/125",
+      "components": {
+        "task": "249/125",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "19/250",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "3/50",
+        "false_alarm": "7/50",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "FALLBACK": "19/50"
+      }
+    },
+    "always_repair": {
+      "loss": "67/20",
+      "components": {
+        "task": "7/4",
+        "verify": "0",
+        "repair": "1",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "0",
+        "false_alarm": "3/10",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    }
+  },
+  "F5": {
+    "joint": {
+      "loss": "923/400",
+      "components": {
+        "task": "198/125",
+        "verify": "13/80",
+        "repair": "1/10",
+        "fallback": "31/1000",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "43/100",
+        "miss": "3/100",
+        "false_alarm": "37/200",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "88/25",
+        "VERIFY": "13/40",
+        "FALLBACK": "31/200"
+      }
+    },
+    "gate": {
+      "loss": "663/250",
+      "components": {
+        "task": "1683/1000",
+        "verify": "1/2",
+        "repair": "19/500",
+        "fallback": "31/1000",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "33/200",
+        "false_alarm": "7/200",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "693/200",
+        "REPAIR": "19/50",
+        "FALLBACK": "31/200"
+      }
+    },
+    "myopic": {
+      "loss": "237/100",
+      "components": {
+        "task": "321/200",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "13/200",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/20",
+        "false_alarm": "3/20",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "147/40",
+        "FALLBACK": "13/40"
+      }
+    },
+    "greedy_voi": {
+      "loss": "237/100",
+      "components": {
+        "task": "321/200",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "13/200",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/20",
+        "false_alarm": "3/20",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "147/40",
+        "FALLBACK": "13/40"
+      }
+    },
+    "verify_then_act": {
+      "loss": "663/250",
+      "components": {
+        "task": "1683/1000",
+        "verify": "1/2",
+        "repair": "19/500",
+        "fallback": "31/1000",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "33/200",
+        "false_alarm": "7/200",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "693/200",
+        "REPAIR": "19/50",
+        "FALLBACK": "31/200"
+      }
+    },
+    "never_repair": {
+      "loss": "371/125",
+      "components": {
+        "task": "249/125",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "19/250",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "3/50",
+        "false_alarm": "7/50",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "FALLBACK": "19/50"
+      }
+    },
+    "always_repair": {
+      "loss": "923/400",
+      "components": {
+        "task": "198/125",
+        "verify": "13/80",
+        "repair": "1/10",
+        "fallback": "31/1000",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "43/100",
+        "miss": "3/100",
+        "false_alarm": "37/200",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "88/25",
+        "VERIFY": "13/40",
+        "FALLBACK": "31/200"
+      }
+    }
+  },
+  "F6": {
+    "joint": {
+      "loss": "2958/3125",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "458/3125",
+        "miss": "119/6250",
+        "false_alarm": "339/6250",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "gate": {
+      "loss": "24113/12500",
+      "components": {
+        "task": "149/125",
+        "verify": "1/2",
+        "repair": "19/500",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "622/3125",
+        "miss": "233/3125",
+        "false_alarm": "78/3125",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "KEEP": "181/50",
+        "REPAIR": "19/50"
+      }
+    },
+    "myopic": {
+      "loss": "2958/3125",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "458/3125",
+        "miss": "119/6250",
+        "false_alarm": "339/6250",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "greedy_voi": {
+      "loss": "2958/3125",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "458/3125",
+        "miss": "119/6250",
+        "false_alarm": "339/6250",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "verify_then_act": {
+      "loss": "5958/3125",
+      "components": {
+        "task": "29/25",
+        "verify": "1/2",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "458/3125",
+        "miss": "119/6250",
+        "false_alarm": "339/6250",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "REPAIR": "1",
+        "KEEP": "3"
+      }
+    },
+    "never_repair": {
+      "loss": "18/5",
+      "components": {
+        "task": "3",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "5"
+      }
+    },
+    "always_repair": {
+      "loss": "2958/3125",
+      "components": {
+        "task": "7/10",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "458/3125",
+        "miss": "119/6250",
+        "false_alarm": "339/6250",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    }
+  },
+  "F7": {
+    "joint": {
+      "loss": "79/40",
+      "components": {
+        "task": "51/40",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/40",
+        "false_alarm": "9/40",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "gate": {
+      "loss": "18/5",
+      "components": {
+        "task": "3",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "5"
+      }
+    },
+    "myopic": {
+      "loss": "79/40",
+      "components": {
+        "task": "51/40",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/40",
+        "false_alarm": "9/40",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "greedy_voi": {
+      "loss": "79/40",
+      "components": {
+        "task": "51/40",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/40",
+        "false_alarm": "9/40",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    },
+    "verify_then_act": {
+      "loss": "141/50",
+      "components": {
+        "task": "81/50",
+        "verify": "1/2",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/40",
+        "false_alarm": "9/40",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1",
+        "REPAIR": "1",
+        "KEEP": "3"
+      }
+    },
+    "never_repair": {
+      "loss": "18/5",
+      "components": {
+        "task": "3",
+        "verify": "0",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/10",
+        "false_alarm": "0",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "KEEP": "5"
+      }
+    },
+    "always_repair": {
+      "loss": "79/40",
+      "components": {
+        "task": "51/40",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "3/5",
+        "miss": "3/40",
+        "false_alarm": "9/40",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1",
+        "KEEP": "4"
+      }
+    }
+  },
+  "F8": {
+    "joint": {
+      "loss": "3/4",
+      "components": {
+        "task": "3/20",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "1/2",
+        "miss": "0",
+        "false_alarm": "1/4",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1"
+      }
+    },
+    "gate": {
+      "loss": "9/10",
+      "components": {
+        "task": "0",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/20",
+        "false_alarm": "3/20",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1"
+      }
+    },
+    "myopic": {
+      "loss": "3/4",
+      "components": {
+        "task": "3/20",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "1/2",
+        "miss": "0",
+        "false_alarm": "1/4",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1"
+      }
+    },
+    "greedy_voi": {
+      "loss": "3/4",
+      "components": {
+        "task": "3/20",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "1/2",
+        "miss": "0",
+        "false_alarm": "1/4",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1"
+      }
+    },
+    "verify_then_act": {
+      "loss": "9/10",
+      "components": {
+        "task": "0",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/20",
+        "false_alarm": "3/20",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1"
+      }
+    },
+    "never_repair": {
+      "loss": "9/10",
+      "components": {
+        "task": "0",
+        "verify": "1/2",
+        "repair": "0",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "2/5",
+        "miss": "1/20",
+        "false_alarm": "3/20",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "VERIFY": "1"
+      }
+    },
+    "always_repair": {
+      "loss": "3/4",
+      "components": {
+        "task": "3/20",
+        "verify": "0",
+        "repair": "1/10",
+        "fallback": "0",
+        "defer": "0",
+        "other_direct": "0",
+        "terminal": "1/2",
+        "miss": "0",
+        "false_alarm": "1/4",
+        "abstain": "0"
+      },
+      "expected_action_counts": {
+        "REPAIR": "1"
+      }
+    }
+  }
+}

@@ -1,0 +1,176 @@
+\section{Notation and theorem assumptions}
+\begin{longtable}{p{.24\linewidth}p{.68\linewidth}}
+\toprule
+Symbol & Meaning\\
+\midrule
+$I,\cE,\mu$ & Fixed hidden environment, its finite set, and prior\\
+$F_t,M_t,B_t$ & Representation, visible policy mode, and repair budget\\
+$X_t,\cH_t$ & Visible control state and complete observable history\\
+$\Theta_i(f),\Delta_i(f)$ & Reference-task adequacy and excess risk\\
+$\mathsf K_i(y,x'\mid x,a)$ & Joint observation--successor kernel\\
+$b_t,\Phi$ & Posterior on environments and its Bayes update\\
+$T,h$ & Deployment horizon and remaining rounds\\
+$V_h,\mathcal Q_h$ & Unrestricted optimal loss and action value\\
+$G_h,V_h^G,W_h$ & Gate, gated loss, and their difference\\
+$A_h$ & Joint-optimal Bellman loss advantage\\
+$p_{\dec},p_{\inte}$ & Declaration and intervention boundaries when defined\\
+$q_i(z),m_u$ & Passive post-repair transcript law and its distinct risk breakpoints\\
+$\rho,\beta$ & Hellinger affinity and its negative logarithm for verification\\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}{p{.26\linewidth}p{.64\linewidth}}
+\toprule
+Result & Assumptions beyond the finite model\\
+\midrule
+Decoder coefficient & Assumption~\ref{ass:repair}; fixed instance and fully charged tails\\
+Factorized race & Binary labels on a disjoint post-law partition\\
+Shrinking-channel limit & Fixed pre laws and costs; $H_\delta\KL(Q_i^\delta\Vert Q_j^\delta)=o(L_\delta)$ for opposite labels\\
+Gate-cost identity & Nonempty gate, identical terminal decisions and loss\\
+No-information threshold & Binary labels reversed by deterministic repair;
+no new information; symmetric terminal costs; only keep/repair\\
+Repair-region bound & Binary environment; a fixed irreversible repair;
+passive continuation; affine nonterminal cost; opposite repaired labels;
+symmetric terminal costs\\
+Two-region example & Explicit one-round parameters in Section~\ref{sec:counter}\\
+Perturbation bound & Common finite spaces and physical action sets;
+uniform kernel/cost perturbation bounds\\
+Blackwell comparison & Pure information action, unchanged costs and state
+transition, environment-independent garbling\\
+Logarithmic gate bound & Repeatable independent full-support identifiable
+verification; old-task cost during verification; deterministic repair;
+zero task loss in the correctly selected mode; fixed parameters\\
+\bottomrule
+\end{longtable}
+Each result has a proof in the main text. The tables specify their scope and
+should not be read as extending one theorem to another experiment family.
+
+\section{A complete noisy posterior calculation}
+At the counterexample prior $p=1/4$, verification yields
+\begin{align*}
+\Pp(Y=1)&=\frac34\frac15+\frac14\frac45=\frac7{20},
+&
+\Pp(I=1\mid Y=1)&=\frac47,\\
+\Pp(Y=0)&=\frac{13}{20},
+&
+\Pp(I=1\mid Y=0)&=\frac1{13}.
+\end{align*}
+The representation remains $f_0$, whose inadequate environment is $I=1$.
+After $Y=1$, the optimal declaration is inadequate, with conditional loss
+$2(3/7)=6/7$. After $Y=0$, it is adequate, with conditional loss $2/13$.
+The expected terminal loss is
+\[
+\frac7{20}\frac67+\frac{13}{20}\frac2{13}=\frac25.
+\]
+Adding the verification cost $1/2$ gives $9/10$.
+Repair costs $1/10$, changes the per-round expected task loss to
+$(3/4)(1/5)=3/20$, and changes the label map. Its symmetric terminal risk is
+still $2\min(1/4,3/4)=1/2$, so its total is $3/4$.
+All task and terminal terms are accounted for.
+
+\section{Asymmetric declarations and abstention}
+For old labels $(1,0)$, define
+\[
+g_0(p)=\min\{\lambda_{\rm miss}p,\lambda_{\rm FA}(1-p)\}.
+\]
+After a label-reversing repair, the corresponding risk is
+\[
+g_1(p)=\min\{\lambda_{\rm miss}(1-p),\lambda_{\rm FA}p\}.
+\]
+With an abstention cost, include $\lambda_\bot$ as a third option in each
+minimum. In the no-information family the two macro values are
+$hpr+g_0(p)$ and $c_r+h(1-p)s+g_1(p)$.
+They need not share a terminal term. Thus the symmetric closed-form threshold
+cannot be carried over by merely substituting a new $p_{\dec}$.
+One can instead partition $[0,1]$ at the breakpoints of $g_0,g_1$ and compare the
+resulting affine expressions on each piece. The solver implements the full
+terminal loss without this simplification.
+
+\section{The scalar adequacy probability can lose necessary information}
+Consider three environments, two representations, and one remaining round.
+Old task losses are $(0,2,2)$; repaired task losses are $(1/5,0,3)$.
+The labels are determined by whether these risks vanish. Repair costs $1/10$,
+there are no observations, and both terminal error penalties equal $1/10$.
+At beliefs $b=(1/2,1/2,0)$ and $b'=(1/2,0,1/2)$, the old inadequacy probability
+is the same, namely $1/2$.
+
+Under $b$, keep costs $1+1/20=21/20$ and repair costs
+$1/10+1/10+1/20=1/4$. Under $b'$, keep still costs $21/20$, whereas
+repair costs $1/10+1/10+3/2=17/10$; its current label is certainly inadequate,
+so its terminal risk is zero. Thus the optimal action is repair at $b$ and keep
+at $b'$. Proposition~\ref{prop:realize} realizes both loss tables by finite
+representations with environment-independent visible outputs.
+The scalar probability cannot be the general sufficient state.
+
+\section{Independent policy-tree recurrence}
+Let $\Gamma_0(x)=\{(L_i(x,d))_{i=1}^K:d\in\mathcal D(x)\}$, retaining
+distinct policy labels even when their vectors coincide.
+For an action $a$ and one selected continuation vector
+$\alpha^{y,x'}\in\Gamma_{h-1}(x')$ at each observable event, define
+\[
+\alpha_i=\sum_{y,x'}\mathsf K_i(y,x'\mid x,a)
+\left[\ell_i(x,a,y,x')+\alpha_i^{y,x'}\right].
+\]
+Enumerating every action and every such selection forms $\Gamma_h(x)$.
+By conditioning on the first event, this lists all deterministic policy-tree
+loss vectors. Therefore
+\[
+V_h(b,x)=\min_{\alpha\in\Gamma_h(x)}b^\top\alpha.
+\]
+This recurrence provides both the standard geometry argument and an independent
+finite implementation that never computes a posterior. It is used only for the
+unrestricted model; a belief-dependent gate would require checking tree
+feasibility at each reached posterior.
+
+\section{Exact prefix-policy calculation}
+For a BSC with crossover $e$, write
+\[
+q_0(k)=\binom nk e^k(1-e)^{n-k},\qquad
+q_1(k)=\binom nk (1-e)^k e^{n-k}.
+\]
+Let $\mathcal K_n=\{k:pq_1(k)\ge(1-p)q_0(k)\}$,
+$e_0=\sum_{k\in\mathcal K_n}q_0(k)$, and
+$e_1=\sum_{k\notin\mathcal K_n}q_1(k)$.
+For $n\le T-1$, the fixed-prefix policy used in
+Figure~\ref{fig:log} has exact cost
+\begin{align*}
+J_T(\pi_n)={}&n(pr+c_v)
+ +(1-p)e_0[c_r+(T-n)s]\\
+ &+p(1-e_1)c_r+pe_1(T-n)r
+ +\lambda[(1-p)e_0+pe_1].
+\end{align*}
+Every term is evaluated with rational arithmetic before decimal export.
+This is a direct evaluation of a feasible policy; the large-horizon experiment
+does not run a purported exact POMDP solver at $T=1000$.
+
+\section{Reproduction protocol and artifact map}
+From the project root, \texttt{python3 scripts/reproduce.py} runs the test suite,
+regenerates frozen computations, creates vector figures, and compiles the
+manuscript using \texttt{latexmk}. Without a TeX installation, use the explicit
+\texttt{--skip-pdf} option. The exact solver itself needs only
+Python's standard library. Figure generation requires NumPy and Matplotlib.
+The manuscript uses ordinary LaTeX packages and BibTeX.
+
+The source is organized into model validation, belief updates, exact Bellman
+control, exhaustive enumeration, baseline evaluation, analytic formulas, and a
+command-line interface. Configuration files specify rational parameters.
+Result files include every table column, exact fractions, diagnostics, source
+and model hashes, finite enumeration checks, timing measurements, and a complete
+optimal policy DAG for the failed-repair instance. The generic model JSON stores
+full joint kernels and terminal costs.
+
+The tests verify implementation properties independently where possible.
+Numerical sweeps verify finite instances, not general claims. The package does
+not contain a proof-assistant formalization. General multiple-repair topology,
+a tight noisy gate-gap asymptotic constant, and open-world representation
+discovery remain outside the proved scope.
+
+\section{Additional code validation for the three-environment example}
+The test suite constructs the full explicit kernel for the preceding
+three-environment example and checks both optimal actions without compressing
+the belief to a scalar. It also checks that the model serialization preserves
+exact probabilities and that an observed repair-success event changes the
+posterior when success probabilities differ by environment. These tests guard
+against two implementation shortcuts that would invalidate the stated model:
+conditioning only on an observation token while ignoring the visible successor,
+and replacing the environment belief by a single adequacy probability.

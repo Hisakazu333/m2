@@ -1,0 +1,8 @@
+{
+  "uploaded_archive": "02-arxiv_full_source.tar.gz",
+  "uploaded_sha256": "7869d3e7db28f85db26f99395151c19852fb24f20af03390099bd4b30f955326",
+  "original_manuscript_title": "Certifying Through Repair: Decoder Selection and Finite-Horizon Representation Intervention",
+  "original_python_repository_in_archive": false,
+  "base_finite_horizon_project": "m2_full_paper, previous conversation deliverable",
+  "purpose": "Integrated revision; original source and earlier package are preserved separately"
+}

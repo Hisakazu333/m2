@@ -1,0 +1,1 @@
+{"family":"binary","parameters":{"horizon":1,"prior":"1/4","r":"2","s":"1/5","repair_cost":"1/10","verify_cost":"1/2","verify_task":"0","verify_error":"1/5","terminal_penalty":"2"}}

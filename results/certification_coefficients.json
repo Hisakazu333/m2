@@ -1,0 +1,32 @@
+[
+  {
+    "environment": 1,
+    "rate": 0.5108256237659907,
+    "decoder": [
+      0,
+      1
+    ],
+    "joint_coefficient": 1.9576151889712174,
+    "separated_coefficient": 48.99319652320355
+  },
+  {
+    "environment": 2,
+    "rate": 0.22628916118535888,
+    "decoder": [
+      0,
+      0
+    ],
+    "joint_coefficient": 4.41912460482752,
+    "separated_coefficient": 4.41912460482752
+  },
+  {
+    "environment": 3,
+    "rate": 0.3112386795830577,
+    "decoder": [
+      0,
+      1
+    ],
+    "joint_coefficient": 3.212968263904803,
+    "separated_coefficient": 49.66349616475457
+  }
+]

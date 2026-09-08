@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "environments": [
+    "E0",
+    "E1"
+  ],
+  "states": {
+    "idle:0:0": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 1,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "old",
+      "duration_mode": "idle"
+    },
+    "idle:0:1": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 1,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "old",
+      "duration_mode": "idle"
+    },
+    "idle:0:2": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 1,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "old",
+      "duration_mode": "idle"
+    },
+    "pending:0:1:1:1": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 1,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "old",
+      "duration_mode": "in_progress"
+    },
+    "idle:1:0": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "spent",
+      "duration_mode": "idle"
+    },
+    "idle:1:1": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "spent",
+      "duration_mode": "idle"
+    },
+    "idle:1:2": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        1,
+        0
+      ],
+      "macro_origin": "spent",
+      "duration_mode": "idle"
+    },
+    "idle:2:0": {
+      "representation": "f1",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        0,
+        1
+      ],
+      "macro_origin": "new",
+      "duration_mode": "idle"
+    },
+    "idle:2:1": {
+      "representation": "f1",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        0,
+        1
+      ],
+      "macro_origin": "new",
+      "duration_mode": "idle"
+    },
+    "idle:2:2": {
+      "representation": "f1",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        0,
+        1
+      ],
+      "macro_origin": "new",
+      "duration_mode": "idle"
+    }
+  },
+  "actions": {
+    "idle:0:0": [
+      "KEEP"
+    ],
+    "idle:0:1": [
+      "KEEP"
+    ],
+    "idle:0:2": [
+      "KEEP",
+      "VERIFY"
+    ],
+    "pending:0:1:1:1": [
+      "CONTINUE"
+    ],
+    "idle:1:0": [
+      "KEEP"
+    ],
+    "idle:1:1": [
+      "KEEP",
+      "VERIFY"
+    ],
+    "idle:1:2": [
+      "KEEP",
+      "VERIFY"
+    ],
+    "idle:2:0": [
+      "KEEP"
+    ],
+    "idle:2:1": [
+      "KEEP"
+    ],
+    "idle:2:2": [
+      "KEEP"
+    ]
+  },
+  "kernels": [
+    {
+      "state": "idle:0:0",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "terminal_padding",
+          "next_state": "idle:0:0",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:0:1",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "idle:0:0",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:0:2",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "idle:0:1",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:0:2",
+      "action": "VERIFY",
+      "outcomes": [
+        {
+          "observation": "in_progress",
+          "next_state": "pending:0:1:1:1",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "pending:0:1:1:1",
+      "action": "CONTINUE",
+      "outcomes": [
+        {
+          "observation": "0",
+          "next_state": "idle:0:0",
+          "probabilities": [
+            "1",
+            "0"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        {
+          "observation": "1",
+          "next_state": "idle:0:0",
+          "probabilities": [
+            "0",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:1:0",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "terminal_padding",
+          "next_state": "idle:1:0",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:1:1",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "idle:1:0",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:1:1",
+      "action": "VERIFY",
+      "outcomes": [
+        {
+          "observation": "0",
+          "next_state": "idle:1:0",
+          "probabilities": [
+            "1",
+            "0"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        {
+          "observation": "1",
+          "next_state": "idle:1:0",
+          "probabilities": [
+            "0",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:1:2",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "idle:1:1",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:1:2",
+      "action": "VERIFY",
+      "outcomes": [
+        {
+          "observation": "0",
+          "next_state": "idle:1:1",
+          "probabilities": [
+            "1",
+            "0"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        {
+          "observation": "1",
+          "next_state": "idle:1:1",
+          "probabilities": [
+            "0",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:2:0",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "terminal_padding",
+          "next_state": "idle:2:0",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:2:1",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "idle:2:0",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "1/5",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "idle:2:2",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "idle:2:1",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "1/5",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    }
+  ],
+  "terminal": {
+    "idle:0:0": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "idle:0:1": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "idle:0:2": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "pending:0:1:1:1": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "idle:1:0": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "idle:1:1": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "idle:1:2": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "idle:2:0": {
+      "1": [
+        "2",
+        "0"
+      ],
+      "0": [
+        "0",
+        "2"
+      ]
+    },
+    "idle:2:1": {
+      "1": [
+        "2",
+        "0"
+      ],
+      "0": [
+        "0",
+        "2"
+      ]
+    },
+    "idle:2:2": {
+      "1": [
+        "2",
+        "0"
+      ],
+      "0": [
+        "0",
+        "2"
+      ]
+    }
+  },
+  "prior": [
+    "1/2",
+    "1/2"
+  ],
+  "initial_state": "idle:0:2",
+  "horizon": 2,
+  "metadata": {
+    "family": "binary",
+    "event_order": "intervention_before_current_task",
+    "loss_observed": false,
+    "gate_threshold": "1/2",
+    "verify_task": "0",
+    "repair_attempts": 1,
+    "duration_expansion": {
+      "event_order": "full macro cost and outcome at completion",
+      "durations": [
+        {
+          "state": "old",
+          "action": "VERIFY",
+          "slots": 2
+        }
+      ]
+    }
+  }
+}

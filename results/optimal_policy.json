@@ -1,0 +1,330 @@
+{
+  "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349",
+  "restriction": "joint",
+  "root": 0,
+  "nodes": [
+    {
+      "id": 0,
+      "remaining": 5,
+      "state": "old",
+      "belief": [
+        "7/10",
+        "3/10"
+      ],
+      "value": "923/400",
+      "action": "REPAIR",
+      "action_values": {
+        "KEEP": "5299/2000",
+        "VERIFY": "663/250",
+        "REPAIR": "923/400",
+        "FALLBACK": "19/5"
+      },
+      "edges": [
+        {
+          "observation": "success",
+          "next_state": "new",
+          "probability": "27/40",
+          "node": 1
+        },
+        {
+          "observation": "failure",
+          "next_state": "spent",
+          "probability": "13/40",
+          "node": 6
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "remaining": 4,
+      "state": "new",
+      "belief": [
+        "7/9",
+        "2/9"
+      ],
+      "value": "16/15",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "16/15"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "new",
+          "probability": "1",
+          "node": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "remaining": 3,
+      "state": "new",
+      "belief": [
+        "7/9",
+        "2/9"
+      ],
+      "value": "41/45",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "41/45"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "new",
+          "probability": "1",
+          "node": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "remaining": 2,
+      "state": "new",
+      "belief": [
+        "7/9",
+        "2/9"
+      ],
+      "value": "34/45",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "34/45"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "new",
+          "probability": "1",
+          "node": 4
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "remaining": 1,
+      "state": "new",
+      "belief": [
+        "7/9",
+        "2/9"
+      ],
+      "value": "3/5",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "3/5"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "new",
+          "probability": "1",
+          "node": 5
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "remaining": 0,
+      "state": "new",
+      "belief": [
+        "7/9",
+        "2/9"
+      ],
+      "value": "4/9",
+      "declaration": "0"
+    },
+    {
+      "id": 6,
+      "remaining": 4,
+      "state": "spent",
+      "belief": [
+        "7/13",
+        "6/13"
+      ],
+      "value": "433/130",
+      "action": "VERIFY",
+      "action_values": {
+        "KEEP": "2459/650",
+        "VERIFY": "433/130",
+        "FALLBACK": "229/65"
+      },
+      "edges": [
+        {
+          "observation": "0",
+          "next_state": "spent",
+          "probability": "34/65",
+          "node": 7
+        },
+        {
+          "observation": "1",
+          "next_state": "spent",
+          "probability": "31/65",
+          "node": 11
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "remaining": 3,
+      "state": "spent",
+      "belief": [
+        "14/17",
+        "3/17"
+      ],
+      "value": "24/17",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "24/17",
+        "VERIFY": "1509/850",
+        "FALLBACK": "40/17"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "spent",
+          "probability": "1",
+          "node": 8
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "remaining": 2,
+      "state": "spent",
+      "belief": [
+        "14/17",
+        "3/17"
+      ],
+      "value": "18/17",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "18/17",
+        "VERIFY": "1293/850",
+        "FALLBACK": "149/85"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "spent",
+          "probability": "1",
+          "node": 9
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "remaining": 1,
+      "state": "spent",
+      "belief": [
+        "14/17",
+        "3/17"
+      ],
+      "value": "12/17",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "12/17",
+        "VERIFY": "41/34",
+        "FALLBACK": "98/85"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "spent",
+          "probability": "1",
+          "node": 10
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "remaining": 0,
+      "state": "spent",
+      "belief": [
+        "14/17",
+        "3/17"
+      ],
+      "value": "6/17",
+      "declaration": "1"
+    },
+    {
+      "id": 11,
+      "remaining": 3,
+      "state": "spent",
+      "belief": [
+        "7/31",
+        "24/31"
+      ],
+      "value": "76/31",
+      "action": "FALLBACK",
+      "action_values": {
+        "KEEP": "17/5",
+        "VERIFY": "1193/310",
+        "FALLBACK": "76/31"
+      },
+      "edges": [
+        {
+          "observation": "fallback",
+          "next_state": "fallback",
+          "probability": "1",
+          "node": 12
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "remaining": 2,
+      "state": "fallback",
+      "belief": [
+        "7/31",
+        "24/31"
+      ],
+      "value": "256/155",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "256/155"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "fallback",
+          "probability": "1",
+          "node": 13
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "remaining": 1,
+      "state": "fallback",
+      "belief": [
+        "7/31",
+        "24/31"
+      ],
+      "value": "163/155",
+      "action": "KEEP",
+      "action_values": {
+        "KEEP": "163/155"
+      },
+      "edges": [
+        {
+          "observation": "none",
+          "next_state": "fallback",
+          "probability": "1",
+          "node": 14
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "remaining": 0,
+      "state": "fallback",
+      "belief": [
+        "7/31",
+        "24/31"
+      ],
+      "value": "14/31",
+      "declaration": "0"
+    }
+  ],
+  "complete": true
+}

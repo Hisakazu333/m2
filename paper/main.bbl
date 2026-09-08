@@ -1,0 +1,105 @@
+\begin{thebibliography}{12}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Blackwell(1953)]{blackwell1953}
+David Blackwell.
+\newblock Equivalent comparisons of experiments.
+\newblock \emph{The Annals of Mathematical Statistics}, 24\penalty0
+  (2):\penalty0 265--272, 1953.
+\newblock \doi{10.1214/aoms/1177729032}.
+\newblock URL \url{https://doi.org/10.1214/aoms/1177729032}.
+
+\bibitem[Degenne and Koolen(2019)]{degenne2019}
+R{\'e}my Degenne and Wouter~M. Koolen.
+\newblock Pure exploration with multiple correct answers.
+\newblock \emph{arXiv preprint arXiv:1902.03475}, 2019.
+\newblock URL \url{https://arxiv.org/abs/1902.03475}.
+
+\bibitem[Hoeffding(1963)]{hoeffding1963}
+Wassily Hoeffding.
+\newblock Probability inequalities for sums of bounded random variables.
+\newblock \emph{Journal of the American Statistical Association}, 58\penalty0
+  (301):\penalty0 13--30, 1963.
+\newblock \doi{10.1080/01621459.1963.10500830}.
+\newblock URL
+  \url{https://www.tandfonline.com/doi/abs/10.1080/01621459.1963.10500830}.
+
+\bibitem[Huang(2026)]{huang2026}
+Zijie Huang.
+\newblock Self-certification of representation adequacy: Sequential
+  certification at minimum task loss.
+\newblock \emph{arXiv preprint arXiv:2608.02267}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.02267}.
+
+\bibitem[Kaufmann et~al.(2016)Kaufmann, Capp{\'e}, and Garivier]{kaufmann2016}
+Emilie Kaufmann, Olivier Capp{\'e}, and Aur{\'e}lien Garivier.
+\newblock On the complexity of best-arm identification in multi-armed bandit
+  models.
+\newblock \emph{Journal of Machine Learning Research}, 17\penalty0
+  (1):\penalty0 1--42, 2016.
+\newblock URL \url{https://jmlr.org/papers/v17/kaufman16a.html}.
+
+\bibitem[Krishnamurthy(2018)]{krishnamurthy2018}
+Vikram Krishnamurthy.
+\newblock New sufficient conditions for lower bounding the optimal policy of a
+  {POMDP} using lehmann precision.
+\newblock \emph{arXiv preprint arXiv:1806.08733}, 2018.
+\newblock URL \url{https://arxiv.org/abs/1806.08733}.
+
+\bibitem[Meng et~al.(2022)Meng, Sharma, Andonian, Belinkov, and
+  Bau]{meng2022memit}
+Kevin Meng, Arnab~Sen Sharma, Alex Andonian, Yonatan Belinkov, and David Bau.
+\newblock Mass-editing memory in a transformer.
+\newblock \emph{arXiv preprint arXiv:2210.07229}, 2022.
+\newblock URL \url{https://arxiv.org/abs/2210.07229}.
+
+\bibitem[Morato et~al.(2022)Morato, Papakonstantinou, Andriotis, Nielsen, and
+  Rigo]{morato2022}
+P.~G. Morato, K.~G. Papakonstantinou, C.~P. Andriotis, J.~S. Nielsen, and
+  P.~Rigo.
+\newblock Optimal inspection and maintenance planning for deteriorating
+  structural components through dynamic bayesian networks and markov decision
+  processes.
+\newblock \emph{Structural Safety}, 94:\penalty0 102140, 2022.
+\newblock \doi{10.1016/j.strusafe.2021.102140}.
+\newblock URL \url{https://arxiv.org/abs/2009.04547}.
+
+\bibitem[Mozannar and Sontag(2020)]{mozannar2020defer}
+Hussein Mozannar and David Sontag.
+\newblock Consistent estimators for learning to defer to an expert.
+\newblock In \emph{Proceedings of the 37th International Conference on Machine
+  Learning}, volume 119 of \emph{Proceedings of Machine Learning Research},
+  pages 7076--7087, 2020.
+\newblock URL \url{https://proceedings.mlr.press/v119/mozannar20b.html}.
+
+\bibitem[Nitinawarat and Veeravalli(2014)]{nitinawarat2015}
+Sirin Nitinawarat and V.~V. Veeravalli.
+\newblock Controlled sensing for sequential multihypothesis testing with
+  controlled markovian observations and non-uniform control cost.
+\newblock \emph{arXiv preprint arXiv:1310.1844}, 2014.
+\newblock URL \url{https://arxiv.org/abs/1310.1844}.
+\newblock Revised preprint version 2.
+
+\bibitem[Smallwood and Sondik(1973)]{smallwood1973}
+Richard~D. Smallwood and Edward~J. Sondik.
+\newblock The optimal control of partially observable markov processes over a
+  finite horizon.
+\newblock \emph{Operations Research}, 21\penalty0 (5):\penalty0 1071--1088,
+  1973.
+\newblock \doi{10.1287/opre.21.5.1071}.
+\newblock URL \url{https://pubsonline.informs.org/doi/10.1287/opre.21.5.1071}.
+
+\bibitem[Zhang and Zhang(2023)]{zhang2023}
+Hao Zhang and Weihua Zhang.
+\newblock Analytical solution to a partially observable machine maintenance
+  problem with obvious failures.
+\newblock \emph{Management Science}, 69\penalty0 (7):\penalty0 3993--4015,
+  2023.
+\newblock \doi{10.1287/mnsc.2022.4547}.
+\newblock URL \url{https://pubsonline.informs.org/doi/10.1287/mnsc.2022.4547}.
+
+\end{thebibliography}

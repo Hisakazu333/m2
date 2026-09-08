@@ -1,0 +1,27 @@
+{
+  "python": "3.12.13",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "arithmetic": "fractions.Fraction for all solver values and posterior updates",
+  "experiment_type": "deterministic exact finite-model computations",
+  "random_seed": null,
+  "seed_reason": "No Monte Carlo sampling is used",
+  "source_sha256": "e5ba9248ff03ba99e3b3aa58012d8ec37a9dc1ce155feb8f52719d3caa863a0c",
+  "external_git_commit": null,
+  "elapsed_seconds": 3.754843216000154,
+  "enumeration_cases": 20,
+  "largest_enumerated_policy_count": 5552,
+  "disconnected_region": [
+    "[3/22, 1/3]",
+    "[7/11, 1]"
+  ],
+  "analytic_no_information_gap_at_T10": "3/2",
+  "baseline_names": [
+    "joint",
+    "gate",
+    "myopic",
+    "greedy_voi",
+    "verify_then_act",
+    "never_repair",
+    "always_repair"
+  ]
+}

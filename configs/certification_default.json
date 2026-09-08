@@ -1,0 +1,28 @@
+{
+  "pre": [
+    0.5,
+    0.9,
+    0.6
+  ],
+  "post": [
+    0.8,
+    0.2,
+    0.2
+  ],
+  "labels": [
+    0,
+    0,
+    1
+  ],
+  "costs": [
+    1,
+    1,
+    1
+  ],
+  "repair_success": 0.8,
+  "repair_cost": 0.3,
+  "delta": 0.05,
+  "horizon": 2400,
+  "pre_limit": 2000,
+  "repair_cap": 24
+}

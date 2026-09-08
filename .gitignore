@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# LaTeX build artifacts (sources, generated tables/figures and main.pdf are tracked)
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+
+# Release archives (written next to the project directory)
+*.tar.gz
+*.zip

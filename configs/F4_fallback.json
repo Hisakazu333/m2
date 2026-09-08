@@ -1,0 +1,1 @@
+{"family":"binary","parameters":{"horizon":5,"prior":"3/10","r":"2","s":"1/2","repair_cost":"1","verify_task":"old","fallback_cost":"1/5","fallback_loss":"3/5","defer_cost":"4/5"}}

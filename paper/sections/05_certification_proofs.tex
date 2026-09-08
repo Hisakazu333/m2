@@ -1,0 +1,218 @@
+\section{Proof of the decoder coefficient}\label{sec:proofs}
+\subsection{Reducing a repair policy to a random decoder}
+\begin{lemma}[Decoder reduction]\label{lem:reduction}
+For any ordered policy in $\Pi_\delta$, one can construct, on an enlarged
+probability space, its number $N$ of pre-repair observations and a random
+decoder $A$ such that
+\begin{equation}\label{eq:decodererror}
+ \PP_j(A\notin\cD_j)\le\delta\quad\text{for every }j.
+\end{equation}
+There is auxiliary randomness $U$, whose distribution is independent of the
+environment and of the entire pre-repair stream, for which $N$ is a stopping
+time in the filtration $\sigma(U,X_1,\ldots,X_n)$ and $A$ is measurable at
+$N$. The expected total cost is at least $g_i\EE_iN$.
+For a separated policy, $A$ can be taken to be a constant decoder.
+\end{lemma}
+\begin{proof}
+Pre-generate an infinite iid pre-repair stream, including observations unused
+by the physical policy. Put policy coins, repair-trial coins, and independent
+uniform variables for each possible post-repair class into $U$.
+Their joint distribution does not depend on the true environment. Uniform
+variables can generate a sample stream from the known law $Q_C$ for each
+class $C$.
+
+Follow the policy until it leaves the pre-repair phase, or makes a no-repair
+terminal decision. Given the pre-repair history and $U$, its last pre-repair
+sample count is a stopping time: no post-repair observation can affect a later
+decision to take another pre-repair sample. In the no-repair case, set every
+coordinate of $A$ to the final declaration. Otherwise, for each class $C$,
+simulate the policy's remaining repair and post-repair continuation using the
+same pre-repair internal state, the repair coins, and the synthetic $Q_C$
+stream; let $A(C)$ be its final label. A continuation that never succeeds in
+repair still produces a deadline declaration under the policy's rule.
+The simulations need not be available to the physical policy. They define
+an auxiliary statistical answer for the lower bound.
+
+Under environment $j$, the marginal simulated continuation for $C_j$ has
+exactly the original policy's continuation law. In particular, its failed
+repair trials, any abort decision, and its deadline rule have the correct
+distribution. Thus the event $A(C_j)\ne\theta_j$ has the original error
+probability, proving \eqref{eq:decodererror}. The other coordinates only
+supply a coupling. Both $N$ and $A$ are functions of the pre-repair history
+and $U$, and $A$ is measurable at $N$ in the enlarged filtration.
+A separated policy's already committed label defines a constant decoder.
+Every pre-repair observation costs at least $g_i$, and all other costs are
+nonnegative, yielding the cost bound.
+\end{proof}
+
+The environment-independent repair mechanism is essential to this reduction.
+If success probabilities depend on $i$, their likelihood ratios are extra
+information, and the same coefficient need not apply. Likewise, using
+unobserved accounting costs as signals would invalidate the experiment.
+
+\subsection{A lower bound with multiple correct answers}
+\begin{lemma}[Pre-repair sample lower bound]\label{lem:lower}
+If $D_i<\infty$, uniformly over uniformly $\delta$-correct ordered policies,
+\[
+ \liminf_{\delta\downarrow0}
+ \frac{\EE_iN}{L_\delta}\ge\frac{1}{D_i}.
+\]
+For separated policies the same bound holds with $D_i^{\rm sep}$.
+\end{lemma}
+\begin{proof}
+Fix $i$ and $0<\varepsilon<1$. Every valid decoder has a nonempty invalidating
+set when $D_i<\infty$. For each $a\in\cD_i$, choose
+$j_a\in B(a)$ attaining $d_i(a)$. Put
+\[
+ n=\left\lfloor\frac{(1-\varepsilon)L_\delta}{D_i}\right\rfloor,
+ \qquad u=(1-\varepsilon/2)L_\delta,\qquad
+ L_{ij}(n)=\sum_{t=1}^n\log\frac{P_i(X_t)}{P_j(X_t)}.
+\]
+The event $F_a=\{N\le n,A=a\}$ is measurable in
+$\sigma(U,X_1,\ldots,X_n)$. On this fixed-time sigma-field the density ratio
+between environments $i$ and $j_a$ is $\exp L_{ij_a}(n)$, since $U$ has the
+same law and is independent of the pre-repair stream. Therefore
+\begin{align}
+ \PP_i(F_a)
+ &\le e^u\PP_{j_a}(F_a)+\PP_i\{L_{ij_a}(n)>u\}\nonumber\\
+ &\le \delta^{\varepsilon/2}
+       +\PP_i\{L_{ij_a}(n)>u\}. \label{eq:lowerchange}
+\end{align}
+The second inequality uses $j_a\in B(a)$ and
+\eqref{eq:decodererror}. The increments are bounded and iid under $i$, and
+\[
+ \EE_iL_{ij_a}(n)=n\,d_i(a)\le nD_i\le(1-\varepsilon)L_\delta.
+\]
+The gap to $u$ is at least $\varepsilon L_\delta/2$.
+A bounded-increment concentration bound makes the remaining probability
+$o(1)$, independently of the policy. There are finitely many decoders.
+Adding \eqref{eq:lowerchange} over valid $a$ and using
+$\PP_i(A\notin\cD_i)\le\delta$ gives
+$\PP_i(N\le n)=o(1)$. Consequently
+$\EE_iN\ge n\PP_i(N>n)=n(1-o(1))$.
+First let $\delta\downarrow0$, then $\varepsilon\downarrow0$.
+
+A separated policy permits only constant decoders. The unique constant decoder
+valid in $i$ has invalidating set $\{j:\theta_j\ne\theta_i\}$.
+Repeating the argument gives the separated rate.
+\end{proof}
+The proof deliberately uses a fixed-time likelihood ratio on the extended
+iid stream. It does not substitute an unstopped likelihood for a stopped one,
+and it does not lower-bound each possible answer as if that answer had to be
+selected with probability approaching one.
+
+\subsection{A common likelihood-ratio decoder procedure}
+At pre-repair sample count $n$, define the stopping rule
+\begin{equation}\label{eq:race}
+T=\inf\left\{n\ge0:
+  \exists a,\ \exists k\notin B(a),\
+  L_{kj}(n)\ge\beta_\delta\ \text{for all }j\in B(a)\right\},
+\qquad
+\beta_\delta=\log\frac{4K(K-1)}{\delta}.
+\end{equation}
+Empty invalidating sets satisfy the condition at $n=0$.
+A deterministic ordering resolves simultaneous eligible decoders and witnesses.
+The witness $k$ is searched over all environments; it is not the unknown true
+index supplied to the algorithm.
+
+\begin{lemma}[Error and stopping time of the race]\label{lem:race}
+The probability that the race ever selects an invalid decoder in environment
+$i$ is at most $\delta/4$. If $D_i<\infty$, then
+\[
+ \limsup_{\delta\downarrow0}\frac{\EE_iT}{L_\delta}\le\frac1{D_i}.
+\]
+Moreover, for $m=\lfloor H_\delta/3\rfloor$ and sufficiently small $\delta$,
+$\PP_i(T>m)\le A_i e^{-a_i m}$ with fixed positive constants $A_i,a_i$.
+\end{lemma}
+\begin{proof}
+Under $i$, an invalid selected decoder must have a witness $k\ne i$
+with $L_{ki}(n)\ge\beta_\delta$. The process
+$\exp L_{ki}(n)$ is a nonnegative unit-mean likelihood-ratio martingale
+under $i$. Ville's maximal inequality and a union bound give
+\[
+ \PP_i(\text{invalid decoder ever selected})
+ \le(K-1)e^{-\beta_\delta}\le\delta/4.
+\]
+No union over all decoders is needed.
+
+Choose an optimal $a_i\in\cD_i$ and set
+$T_i=\inf\{n:\min_{j\in B(a_i)}L_{ij}(n)\ge\beta_\delta\}$.
+The race satisfies $T\le T_i$. For a fixed $\eta>0$, let
+$n_0=\lceil(1+\eta)\beta_\delta/D_i\rceil$. For $n\ge n_0$,
+every $j\in B(a_i)$ has drift $d_{ij}\ge D_i$, and
+\[
+ nd_{ij}-\beta_\delta\ge nD_i\frac{\eta}{1+\eta}.
+\]
+If $T_i>n$, at least one likelihood ratio is below threshold at time $n$.
+Bounded-increment concentration therefore gives, for some $c_{i,\eta}>0$,
+\[
+ \PP_i(T>n)\le\PP_i(T_i>n)
+ \le |B(a_i)|e^{-c_{i,\eta}n}\quad(n\ge n_0).
+\]
+Summing tail probabilities bounds $\EE_iT$ by $n_0+o(1)$ as
+$\delta\downarrow0$. Divide by $L_\delta$, then let $\eta\downarrow0$.
+For the deadline tail use a fixed $\eta$ and
+$m/\beta_\delta\to\infty$ to obtain the stated exponential bound.
+If a universal decoder exists, $T=0$ and both claims are immediate.
+\end{proof}
+
+\subsection{A deadline policy with fully charged tails}
+Set $m=\lfloor H_\delta/3\rfloor$. Run the race until it selects a decoder or
+until $m$ pre-repair observations have been taken.
+If no decoder is selected, finish all remaining slots in the old state
+and declare any fixed pre-history rule, such as its maximum-likelihood label.
+This event is conservatively counted as error. Otherwise attempt repair for
+at most $m$ slots. If all attempts fail, finish the remaining old-state task
+slots, charge their costs, and declare a pre-history rule. If repair succeeds,
+use the remaining post-repair observations to choose a maximum-likelihood
+post class $\widehat C$, and output the selected decoder's label
+$a(\widehat C)$. There are at least $m$ post observations after any such success.
+For a separated policy, restrict the race to constant decoders and retain
+its committed answer even on the all-failed branch.
+
+For distinct post classes $C,D$, let
+$\rho_{CD}=\sum_y\sqrt{Q_C(y)Q_D(y)}<1$ and
+$\rho=\max_{C\ne D}\rho_{CD}$. Under $Q_C$, for any $r$ observations,
+Markov's inequality applied to the square root of the likelihood ratio yields
+\[
+ \PP_C\!\left\{\prod_{t=1}^r Q_D(Y_t)\ge
+                    \prod_{t=1}^r Q_C(Y_t)\right\}
+ \le \rho_{CD}^{\,r}.
+\]
+Thus maximum-likelihood classification among $M=|\calC|$ classes has error at
+most $(M-1)\rho^m$ when $r\ge m$.
+Take this bound as zero for $M=1$.
+
+The total terminal error is bounded by
+\begin{equation}\label{eq:totalerror}
+ \frac{\delta}{4}+\PP_i(T>m)+(1-q)^m+(M-1)\rho^m.
+\end{equation}
+The last three terms are $o(\delta)$, because all instance parameters are
+fixed and $m$ grows as $L_\delta^2/3$. Hence the policy belongs to
+$\Pi_\delta$ for all sufficiently small $\delta$. For separated policies
+the post-class term is unnecessary; the pre-declaration error is already
+bounded by $\delta/4+\PP_i(T>m)$.
+
+The expected number of repair attempts on any eligible history is at most
+$1/q$. Charging timeout and all-failed tails by the entire possible remaining
+old-state cost gives the upper bound
+\begin{equation}\label{eq:costupper}
+ \EE_i C\le
+ g_i\EE_i(T\wedge m)+\frac{\kappa_i}{q}
+ +g_iH_\delta\bigl[\PP_i(T>m)+(1-q)^m\bigr].
+\end{equation}
+This bound includes both failed attempts and unrepaired task slots.
+Its last term is $o(1)$. Lemma~\ref{lem:race} gives the desired upper
+coefficient. Lemmas~\ref{lem:reduction} and \ref{lem:lower} give the lower
+coefficient. Restricting to constant decoders proves the separated equality.
+If a universal decoder exists, $T=0$ and \eqref{eq:costupper} is bounded by
+$\kappa_i/q+o(1)$. This proves Theorem~\ref{thm:main}.
+
+\begin{remark}[The role of the horizon]
+The square-logarithmic deadline is a sufficient explicit schedule. It makes
+all exponentially small tail terms negligible relative to $\delta$ and
+their task costs negligible relative to $L_\delta$. It is not claimed to be
+the smallest feasible deadline. A fixed horizon with bounded likelihood ratios
+cannot support arbitrarily small uniform error for all these instances.
+\end{remark}
+

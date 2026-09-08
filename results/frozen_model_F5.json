@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "environments": [
+    "E0",
+    "E1"
+  ],
+  "states": {
+    "old": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 1,
+      "labels": [
+        1,
+        0
+      ]
+    },
+    "spent": {
+      "representation": "f0",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        1,
+        0
+      ]
+    },
+    "new": {
+      "representation": "f1",
+      "mode": "active",
+      "repair_budget": 0,
+      "labels": [
+        0,
+        1
+      ]
+    },
+    "fallback": {
+      "representation": "f0",
+      "mode": "fallback",
+      "repair_budget": 1,
+      "labels": [
+        1,
+        0
+      ]
+    }
+  },
+  "actions": {
+    "old": [
+      "KEEP",
+      "VERIFY",
+      "REPAIR",
+      "FALLBACK"
+    ],
+    "spent": [
+      "KEEP",
+      "VERIFY",
+      "FALLBACK"
+    ],
+    "new": [
+      "KEEP"
+    ],
+    "fallback": [
+      "KEEP"
+    ]
+  },
+  "kernels": [
+    {
+      "state": "old",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "old",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "old",
+      "action": "VERIFY",
+      "outcomes": [
+        {
+          "observation": "0",
+          "next_state": "old",
+          "probabilities": [
+            "4/5",
+            "1/5"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        {
+          "observation": "1",
+          "next_state": "old",
+          "probabilities": [
+            "1/5",
+            "4/5"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "old",
+      "action": "REPAIR",
+      "outcomes": [
+        {
+          "observation": "success",
+          "next_state": "new",
+          "probabilities": [
+            "3/4",
+            "1/2"
+          ],
+          "task": [
+            "1/5",
+            "0"
+          ],
+          "direct": [
+            "1/10",
+            "1/10"
+          ]
+        },
+        {
+          "observation": "failure",
+          "next_state": "spent",
+          "probabilities": [
+            "1/4",
+            "1/2"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "1/10",
+            "1/10"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "old",
+      "action": "FALLBACK",
+      "outcomes": [
+        {
+          "observation": "fallback",
+          "next_state": "fallback",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "3/5",
+            "3/5"
+          ],
+          "direct": [
+            "1/5",
+            "1/5"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "spent",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "spent",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "spent",
+      "action": "VERIFY",
+      "outcomes": [
+        {
+          "observation": "0",
+          "next_state": "spent",
+          "probabilities": [
+            "4/5",
+            "1/5"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        {
+          "observation": "1",
+          "next_state": "spent",
+          "probabilities": [
+            "1/5",
+            "4/5"
+          ],
+          "task": [
+            "0",
+            "2"
+          ],
+          "direct": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "spent",
+      "action": "FALLBACK",
+      "outcomes": [
+        {
+          "observation": "fallback",
+          "next_state": "fallback",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "3/5",
+            "3/5"
+          ],
+          "direct": [
+            "1/5",
+            "1/5"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "new",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "new",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "1/5",
+            "0"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "state": "fallback",
+      "action": "KEEP",
+      "outcomes": [
+        {
+          "observation": "none",
+          "next_state": "fallback",
+          "probabilities": [
+            "1",
+            "1"
+          ],
+          "task": [
+            "3/5",
+            "3/5"
+          ],
+          "direct": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    }
+  ],
+  "terminal": {
+    "old": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "spent": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    },
+    "new": {
+      "1": [
+        "2",
+        "0"
+      ],
+      "0": [
+        "0",
+        "2"
+      ]
+    },
+    "fallback": {
+      "1": [
+        "0",
+        "2"
+      ],
+      "0": [
+        "2",
+        "0"
+      ]
+    }
+  },
+  "prior": [
+    "7/10",
+    "3/10"
+  ],
+  "initial_state": "old",
+  "horizon": 5,
+  "metadata": {
+    "family": "binary",
+    "event_order": "intervention_before_current_task",
+    "loss_observed": false,
+    "gate_threshold": "1/2",
+    "verify_task": "old",
+    "repair_attempts": 1
+  }
+}

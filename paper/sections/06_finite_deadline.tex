@@ -1,0 +1,166 @@
+\section{Finite deadlines and post-repair information}
+\label{sec:finite-deadline}
+
+\subsection{An explicit finite protocol}
+Fix integers $N,R,H$ with $N+R<H$. The asymptotic policy uses
+$N=R=\lfloor H_\delta/3\rfloor$, but a finite experiment must specify its
+budgets explicitly. Run the polynomial race of
+Theorem~\ref{thm:polynomial} as follows.
+\begin{quote}\ttfamily\small
+For n = 0, ..., N:\\
+\hspace*{1em}Check decoder eligibility using the first n samples.\\
+\hspace*{1em}If eligible, select the first decoder and leave this loop.\\
+\hspace*{1em}If n = N, charge the old-state tail and declare a fallback label.\\
+\hspace*{1em}Otherwise collect one more pre-repair observation.\\
+After selecting a decoder:\\
+\hspace*{1em}Attempt repair at most R times, stopping on success.\\
+\hspace*{1em}On success, classify the post class and apply the decoder.\\
+\hspace*{1em}On all failures, charge the old-state tail and declare fallback.
+\end{quote}
+The boundary sample $n=N$ is checked before timeout. In the separated
+version the selected decoder is constant and its label is retained on every
+subsequent branch, including failed repair.
+
+Let $T$ be the untruncated race time and $f=(1-q)^R$. The same argument as
+in Section~\ref{sec:proofs} gives the finite error bound
+\begin{equation}
+\PP_i(\widehat\theta\ne\theta_i)
+\le \frac{\delta}{4}+\PP_i(T>N)+f+(M-1)\rho^{H-N-R},
+\label{eq:finite-error-general}
+\end{equation}
+when maximum-likelihood post classification is used. The last term is
+omitted for one class. It also gives
+\begin{equation}
+\EE_iC\le
+g_i\EE_i(T\wedge N)+\frac{\kappa_i(1-f)}q
++g_iH\{\PP_i(T>N)+f\}.
+\label{eq:finite-cost-general}
+\end{equation}
+These are unconditional bounds. In particular, a path-specific sample count
+must not be mixed with an unconditional timeout probability and called a
+conditional expectation. A positive threshold parameter alone does not imply
+that arbitrary finite budgets achieve error $\delta$.
+
+For Bernoulli post means, the implementation may instead use nearest-mean
+classification. With minimum distinct-mean gap $\Delta_Q$, its last error
+term can be replaced by
+$2\exp(-(H-N-R)\Delta_Q^2/2)$, by the bounded-sum inequality
+\citep{hoeffding1963}. Both classifiers coincide for the symmetric two-class
+means $0.8$ and $0.2$ used in the main finite experiment.
+
+\subsection{A quantitative information bound before taking a limit}
+The exact equality partition describes what can eventually be distinguished.
+At a finite deadline, the divergences between post laws also matter.
+Let $N_P,N_Q$ be the numbers of acquired pre- and post-repair observations,
+respectively, and let
+\[
+h_\delta=\operatorname{kl}(1-\delta,\delta)
+=(1-2\delta)\log\frac{1-\delta}{\delta},
+\qquad 0<\delta<1/2.
+\]
+
+\begin{theorem}[Finite-deadline information lower bound]
+\label{thm:deadline-lower}
+For every uniformly $\delta$-correct policy in the ordered experiment with
+deadline $H$, and every opposite-old-label pair $i,j$,
+\begin{equation}
+\EE_iN_P\,\KL(P_i\Vert P_j)
++\EE_iN_Q\,\KL(Q_i\Vert Q_j)\ge h_\delta.
+\label{eq:two-phase-info}
+\end{equation}
+In particular,
+\begin{equation}
+J_i^*(\delta;H)\ge
+g_i\max_{j:\theta_j\ne\theta_i}
+\frac{[h_\delta-H\KL(Q_i\Vert Q_j)]_+}
+     {\KL(P_i\Vert P_j)}.
+\label{eq:deadline-cost-lower}
+\end{equation}
+The latter is a lower bound, not a general matching coefficient.
+\end{theorem}
+\begin{proof}
+Include the policy randomization in the complete transcript. It has the same
+distribution under both environments. Conditional on an observed history,
+the policy uses the same action kernel; each acquired pre observation
+contributes $\KL(P_i\Vert P_j)$ to the expected log-likelihood ratio, and each
+post observation contributes $\KL(Q_i\Vert Q_j)$. Repair-success trials,
+deterministic time advancement, and environment-independent policy coins
+contribute zero. The finite-horizon chain rule therefore gives the left side
+of \eqref{eq:two-phase-info} as the transcript divergence. Ignoring an available
+observation can only reduce what the terminal rule uses, and does not
+invalidate the bound.
+
+Map the transcript to the event that the terminal answer equals $\theta_i$.
+Under $i$ this event has probability at least $1-\delta$; under the
+opposite-label $j$ it has probability at most $\delta$. Data processing for
+relative entropy and monotonicity of binary divergence in these two ranges
+give the lower bound $h_\delta$. This is the standard sequential
+change-of-measure principle \citep{kaufmann2016}, applied to the two phases.
+Finally $N_Q\le H$, $C\ge g_iN_P$, and nonnegativity give
+\eqref{eq:deadline-cost-lower}. Take the infimum over uniformly correct
+policies.
+\end{proof}
+This bound deliberately uses opposite-label alternatives because it concerns
+the \emph{final old answer}. It need not recover the sharper decoder bound at
+a fixed post experiment. Their purposes differ: \eqref{eq:deadline-cost-lower}
+quantifies a finite information budget, while Theorem~\ref{thm:main} exploits
+which answer can be selected before a fixed post experiment.
+
+\subsection{A shrinking-channel limit that removes the coefficient advantage}
+The fixed-instance qualification in Theorem~\ref{thm:main} cannot be dropped.
+Allow only the post laws to vary with $\delta$, writing $Q_i^\delta$, while
+the pre laws, labels, costs, and $q>0$ remain fixed.
+
+\begin{theorem}[Collapse to the separated coefficient]
+\label{thm:collapse}
+Let $H_\delta=\lceil L_\delta^2\rceil$. If, for every opposite-label pair,
+\begin{equation}
+H_\delta\KL(Q_i^\delta\Vert Q_j^\delta)=o(L_\delta),
+\label{eq:shrinking-condition}
+\end{equation}
+then the optimal joint cost for this sequence of experiments satisfies
+\begin{equation}
+\lim_{\delta\downarrow0}\frac{J_i^*(\delta;Q^\delta)}{L_\delta}
+=\frac{g_i}{D_i^{\rm sep}}\quad\text{for every }i.
+\label{eq:collapse}
+\end{equation}
+Thus post laws can be pairwise distinct at every confidence level, yet give
+no improvement in the leading coefficient along the sequence.
+\end{theorem}
+\begin{proof}
+Since $h_\delta/L_\delta\to1$, \eqref{eq:deadline-cost-lower} and
+\eqref{eq:shrinking-condition} imply
+\[
+\liminf_{\delta\downarrow0}\frac{J_i^*(\delta;Q^\delta)}{L_\delta}
+\ge g_i\max_{j:\theta_j\ne\theta_i}\frac1{\KL(P_i\Vert P_j)}
+=\frac{g_i}{D_i^{\rm sep}}.
+\]
+For the matching upper bound, run the separated pre-repair race from
+Section~\ref{sec:proofs}. Its constant decoder commits to the old label;
+post observations can be ignored. Its error analysis therefore depends only
+on the fixed pre laws. Repair success and fully charged tails still have the
+same fixed $q$, so its expected cost has coefficient $g_i/D_i^{\rm sep}$.
+This policy is also joint-feasible for every $Q^\delta$. Combining bounds
+proves the result.
+\end{proof}
+
+For a concrete example, retain the three pre means and labels of
+\eqref{eq:example} and set, for $L_\delta\ge1$,
+\begin{equation}
+Q_i^\delta=\Bern\left(\frac12+\frac{a_i}{L_\delta}\right),
+\qquad (a_1,a_2,a_3)=(-1/8,0,1/8).
+\label{eq:shrinking-example}
+\end{equation}
+The post means are always distinct and lie in $[3/8,5/8]$.
+The elementary inequality
+$\KL(\Bern(u)\Vert\Bern(v))\le (u-v)^2/[v(1-v)]$
+follows from $\log x\le x-1$. Hence all post divergences are
+$O(L_\delta^{-2})$, and \eqref{eq:shrinking-condition} holds.
+
+If any one of these post experiments is frozen and the confidence level is
+then sent independently to zero, its singleton partition admits a universal
+decoder and Theorem~\ref{thm:main} gives bounded expected cost. Along
+\eqref{eq:shrinking-example}, however, \eqref{eq:collapse} gives the positive
+separated coefficient. The two limiting operations therefore have different
+outcomes. This is a quantified boundary of the original repair theorem, not
+a contradiction to it.

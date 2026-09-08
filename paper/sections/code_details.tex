@@ -1,0 +1,100 @@
+\section{Checked aggregation and multi-slot actions}
+\label{app:adapters}
+\begin{proposition}[A sufficient environment partition]
+Suppose environments in each block have identical current labels, terminal
+costs for every declaration, joint event probabilities, and task/direct
+costs on every state--action--event triple. Then block posterior masses,
+the visible state, and remaining horizon suffice for optimal Bayes control.
+\end{proposition}
+\begin{proof}
+Within a block every likelihood and loss vector coordinate is identical.
+Predictive event probabilities and expected costs therefore depend only on
+block masses. Summing the individual Bayes update gives Bayes' rule on these
+masses. The terminal minimum also depends only on them. Backward induction
+proves value preservation. This is sufficient and makes no minimality claim.
+\end{proof}
+The implementation checks these equalities before constructing the quotient;
+it rejects an invalid proposed merge.
+
+Positive integer macro durations can be expressed without zero-time cycles.
+Assume an action of duration $d(x,a)$ reveals its joint event at completion,
+with a specified full-action cost, and cannot be interrupted.
+\begin{proposition}[Duration expansion]
+If an action is available only when $d(x,a)\le h$, its macro decision problem
+is equivalent to a finite unit-slot problem with visible countdown states.
+\end{proposition}
+\begin{proof}
+Augment each decision state with its remaining horizon. A duration-one action
+uses the original completion kernel. A longer action first enters a countdown
+state; intermediate transitions reveal only deterministic time advancement,
+cost zero, and permit only continuation. Its last transition uses the original
+joint event and charges its full cost exactly once. Filter actions that cannot
+finish before the deadline. Every macro policy gives a unit policy by inserting
+forced continuations, and every unit policy induces the corresponding macro
+choices. The joint law at decision times, total costs, and terminal declaration
+law coincide. Therefore their optimal values coincide.
+\end{proof}
+The adapter uses this completion convention explicitly. It does not assert
+equivalence when observations arrive during the action or interruption is allowed.
+
+\section{Finite count-lattice recurrence}
+For a Bernoulli pre mean $p_i$, let $w_i(n,u)$ be active mass at count $(n,u)$
+before the eligibility check. Initialize $w_i(0,0)=1$. Remove selected mass,
+then propagate each unresolved cell by
+\[
+w_i(n+1,u)\mathrel{+}=(1-p_i)w_i(n,u),\qquad
+w_i(n+1,u+1)\mathrel{+}=p_iw_i(n,u).
+\]
+At $n=N$ check eligibility first and charge every remaining unresolved cell.
+The policy selects a decoder using all candidate likelihoods; the index $i$
+in this recurrence is used only by the evaluator to compute that common
+policy's performance.
+
+After selection at $n$, success on attempt $r\le R$ has probability
+$q(1-q)^{r-1}$ and leaves $H-n-r$ post observations. For a post mean $v_i$,
+sum the binomial probabilities whose nearest class mean maps to the wrong
+old label under the selected decoder. Midpoint ties use the lowest original
+class index. The implementation accumulates small tails directly from a
+large term using a probability-mass recurrence; subtraction from one is avoided
+where it would erase a small tail. These are finite floating-point sums,
+not certified interval bounds. Their normalization residual is stored separately.
+
+\section{Original-fixture sensitivity table}
+\label{app:original-sensitivity}
+Every row changes only its named parameter from the three-environment
+current-label fixture. The fixed-confidence theorem is not applied to
+the rows with repair success zero.
+\begin{center}\small\input{tables/sensitivity_table}\end{center}
+
+\section{Code map and reproduction}
+\label{app:code-map}
+The project is self-contained. The complete release includes runnable code
+and results; the separate arXiv source archive contains the LaTeX, bibliography,
+and generated figures/tables required to compile this document.
+{\small
+\begin{longtable}{p{.44\linewidth}p{.48\linewidth}}
+\toprule
+File within \texttt{src/m2fh/} & Purpose\\\midrule
+\texttt{model.py}, \texttt{belief.py} & Exact finite model and joint-event Bayes update\\
+\texttt{solver.py}, \texttt{policies.py} & Control, policy restrictions, diagnostics and oracle\\
+\texttt{enumerator.py} & Independent deterministic policy trees\\
+\texttt{certification.py} & Bernoulli fixed-confidence finite protocol\\
+\texttt{decoder\_structure.py} & Factorized coefficients and polynomial race\\
+\texttt{deadline.py} & Finite information lower bound and shrinking family\\
+\texttt{pdf\_fixture.py}, \texttt{families.py} & Explicit original and binary models\\
+\texttt{aggregation.py}, \texttt{durations.py} & Checked quotient and macro-action expansion\\
+\texttt{replay.py}, \texttt{cli.py} & Synthetic visible-event interface and command line\\
+\bottomrule
+\end{longtable}}
+Run \texttt{python3 scripts/reproduce.py} from the project root after installing
+the declared Python and TeX dependencies. Use \texttt{--skip-pdf} explicitly
+when only computations are wanted. The script writes stage logs, a validation
+report, source hashes, numerical tables, figures, and the final PDF.
+\texttt{python3 scripts/package\_release.py} builds both release archives and
+a SHA-256 file inventory. The generated tables in the arXiv archive permit
+compilation without running Python.
+
+The original supplied archive's output CSVs are preserved as reference data
+in the provenance directory. They are not
+presented as independently inspected original Python code. All results in
+the integrated manuscript are regenerated by the included implementation.

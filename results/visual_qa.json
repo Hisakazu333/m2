@@ -1,0 +1,17 @@
+{
+  "pages": 36,
+  "all_pages_reviewed_in_contact_sheets": true,
+  "high_resolution_checks": [
+    16,
+    27,
+    36
+  ],
+  "renderers": [
+    "PyMuPDF",
+    "Poppler pdftoppm"
+  ],
+  "overfull_boxes": 0,
+  "undefined_references": 0,
+  "final_page_orphan_resolved": true,
+  "limitations": "Visual and executable checks do not replace independent mathematical review."
+}

@@ -1,0 +1,88 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+The old-label result makes repair useful as an information operation even
+when the eventual answer remains about the obsolete representation. The useful
+pre-repair answer is a decoder for the information available later. The
+classwise bottleneck and surviving-set test make this answer structure
+explicit and computationally manageable for a single online trajectory.
+
+The fixed-instance coefficient depends on exact equality of post laws.
+The finite-deadline bound supplies the missing quantitative qualification:
+a nominally distinguishing channel may contribute too little information
+within the available time. The shrinking-channel theorem demonstrates that
+the leading advantage can disappear without any two post laws being exactly
+equal at a finite confidence level. It also explains why finite experiments
+should report actual post budgets rather than only the partition.
+
+The current-label Bayes results answer a different operational question.
+A declaration gate can forbid a uniquely optimal repair, and the cost of the
+restriction depends on where the policy actually goes. A pairwise repair--keep
+threshold need not remain a threshold when verification is available.
+When repair has a fixed passive continuation, its terminal risk pieces bound
+the number of disconnected regions regardless of the pre-repair policy's
+complexity.
+
+The following limits determine what can be inferred.
+\begin{enumerate}
+\item Models, costs, and candidate representations are known and finite.
+The paper neither estimates unknown kernels nor learns a new representation
+family. Exact risk-table realization alone imposes no additional control
+structure.
+\item The fixed-confidence coefficient assumes one pre channel, no return to
+pre observations after entering repair, fixed environment-independent
+success probability, and zero post cost. Positive post costs or multiple
+controlled channels call for a new allocation analysis.
+\item Environment-dependent success changes the information in repair outcomes,
+so the random-decoder proof cannot be reused unchanged. For fixed
+$q_i>0$, however, the expected attempts until success can still be bounded
+by $1/q_i$. Informative outcomes alone do not prove that repair cost becomes
+leading order.
+\item The two-component Bayes repair bound requires a binary environment,
+one specified deterministic irreversible repair, passive continuation, and
+symmetric terminal error cost. The generic solver supports some cases,
+such as stochastic repair, outside this theorem.
+\item The $1/2$ declaration gate uses symmetric Bayes errors. An externally
+imposed $0.95$ posterior gate is a different restriction. Neither is the
+uniform fixed-confidence commitment requirement.
+\item The logarithmic Bayes gate bound is an upper bound in a specified
+zero-residual-loss family. No matching logarithmic lower bound or optimal
+constant is asserted. The finite information lower bound is also not a
+general solution of paid two-phase sensing.
+\item Computational examples are small, synthetic, and deterministic.
+Count-lattice certification sums use floating point, while the Bayes solver
+uses exact rational values. Neither confirms a general theorem by experiment
+nor establishes large-scale deployment performance.
+\end{enumerate}
+
+\paragraph{Further questions.}
+A natural next theory problem charges observations on both sides of repair,
+or chooses among several repairs with different post partitions and residual
+task risks. Another imposes a meaningful constraint on representations,
+such as a fixed feature or memory budget, and asks which additional control
+structure follows. These questions are more specific than assuming that
+representation change must create a fundamentally non-Markovian process.
+A belief state remains sufficient for the finite known model considered here.
+
+\section{Conclusion}
+Repair can change which evidence must be collected before acting and how
+later evidence is interpreted. In an ordered fixed-confidence experiment this
+gives a decoder coefficient, a factorized computation, and a polynomial
+likelihood-ratio policy. A finite-deadline lower bound identifies a regime in
+which weakening post observations removes the coefficient advantage.
+For current-label finite-horizon control, declaration gates have an exact
+cost characterization, and a passive repair continuation bounds the topology
+of repair regions. Explicit noisy examples and a reproducible implementation
+make the distinction between certification and intervention checkable.
+
+\paragraph{Reproducibility and computational assistance.}
+The accompanying release contains the complete manuscript and proofs, LaTeX,
+bibliography, exact Bayes solver, independent policy-tree enumerator, two
+decoder implementations, frozen configurations, numerical outputs, and
+figure-generation commands. The provided source archive for the earlier
+manuscript contained LaTeX and generated outputs; its original Python
+repository was not supplied. The integrated release uses the independently
+reconstructed evaluators described here and does not represent the unavailable
+repository as audited. Mathematical development, drafting, and programming
+used AI assistance. This is a research draft, without a claim of formal proof
+verification, peer-review acceptance, or confirmed priority over all related
+literature. No participant data or private deployment logs are used.

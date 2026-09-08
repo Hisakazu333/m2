@@ -1,0 +1,114 @@
+\pdfoutput=1
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx,booktabs,array,longtable,enumitem,xcolor,placeins}
+\usepackage[round,authoryear]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{fancyhdr}
+\hypersetup{pdftitle={Certifying Through Repair: Decoder Selection and Finite-Horizon Representation Intervention},pdfauthor={Zijie Huang}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Certifying Through Repair}
+\fancyhead[R]{\small Integrated research draft}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\setlist{itemsep=2pt,topsep=4pt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\Bern}{\operatorname{Bern}}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cX}{\mathcal X}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cY}{\mathcal Y}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\calC}{\mathcal C}
+\newcommand{\calA}{\mathcal A}
+\newcommand{\calE}{\mathcal E}
+\newcommand{\calF}{\mathcal F}
+\newcommand{\calS}{\mathcal S}
+\newcommand{\calY}{\mathcal Y}
+\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\KEEP}{\textsc{Keep}}
+\newcommand{\VERIFY}{\textsc{Verify}}
+\newcommand{\REPAIR}{\textsc{Repair}}
+\newcommand{\FALLBACK}{\textsc{Fallback}}
+\newcommand{\DEFER}{\textsc{Defer}}
+\newcommand{\joint}{\mathrm{joint}}
+\newcommand{\gate}{\mathrm{gate}}
+\newcommand{\dec}{\mathrm{dec}}
+\newcommand{\inte}{\mathrm{int}}
+\newcommand{\argmin}{\mathop{\mathrm{arg\,min}}}
+\newcommand{\argmax}{\mathop{\mathrm{arg\,max}}}
+\input{tables/run_macros}
+\title{\textbf{Certifying Through Repair}\\[5pt]
+\large Decoder Selection and Finite-Horizon Representation Intervention}
+\author{Zijie Huang\\Independent Researcher\\\texttt{huangzijie@cuyitech.com}}
+\date{September 2026\\[3pt]\small Integrated research draft with complete proofs and executable experiments}
+\begin{document}
+\maketitle
+\begin{abstract}
+Representation repair changes task loss and the evidence available for later
+decisions. We study two explicit contracts: fixed-confidence certification of
+the old representation, and finite-horizon Bayes control with a terminal
+declaration about the current representation. In an ordered single-channel
+experiment with observable environment-independent repair failures and free
+post-repair observations, we reduce old-label certification to choosing a
+decoder on post-repair observational classes. We prove its exact leading
+cost coefficient and a common attaining policy with fully charged deadline
+tails. Classwise factorization computes the coefficient and implements the
+likelihood-ratio race without exponential decoder enumeration. A finite-deadline
+information bound yields a matching shrinking-channel regime where distinct
+post laws fail to improve the leading coefficient. For current-label Bayes
+control, we characterize declaration-gate cost through Bellman advantages
+and bound repair-region components by the affine pieces of passive
+post-repair decision risk. A full-support TP2 example attains two disconnected
+repair regions and strict intervention below the declaration boundary.
+No-information and repeatable-information families give, respectively,
+an exact linear gate-cost example and a logarithmic upper bound.
+Rational Bayes computation, independent policy-tree enumeration, finite
+count-lattice evaluation, and complete source files accompany the results.
+The analysis uses established testing and POMDP tools; the stated contracts
+and structural assumptions delimit every claim.
+\end{abstract}
+\noindent\textbf{Keywords:} representation adequacy; repair; sequential testing;
+multiple correct answers; finite-horizon control; POMDP.
+\clearpage
+{\small\tableofcontents}
+\clearpage
+\input{sections/01_introduction}
+\input{sections/02_model}
+\input{sections/03_certification}
+\input{sections/04_decoder_structure}
+\input{sections/05_certification_proofs}
+\input{sections/06_finite_deadline}
+\input{sections/07_gate}
+\input{sections/08_geometry}
+\input{sections/09_information}
+\input{sections/10_experiments}
+\FloatBarrier
+\input{sections/11_discussion}
+\bibliographystyle{plainnat}
+\bibliography{references}
+\clearpage
+\appendix
+\input{sections/appendices}
+\input{sections/code_details}
+\end{document}

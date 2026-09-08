@@ -1,0 +1,20 @@
+F0: joint=3.00000000, gate=3.00000000
+F1: joint=4.80000000, gate=6.30000000
+F2: joint=1.12000000, gate=1.13000000
+F3: joint=1.40000000, gate=2.13000000
+F4: joint=2.64000000, gate=2.64000000
+F5: joint=2.30750000, gate=2.65200000
+F6: joint=0.94656000, gate=1.92904000
+F7: joint=1.97500000, gate=3.60000000
+F8: joint=0.75000000, gate=0.90000000
+Independent exhaustive checks complete
+Action regions h=1 complete
+Action regions h=2 complete
+Action regions h=3 complete
+Action regions h=4 complete
+Action regions h=6 complete
+Action regions h=8 complete
+Post-repair channel error=1/2 complete
+Post-repair channel error=1/5 complete
+Post-repair channel error=1/20 complete
+Complete in 3.75s

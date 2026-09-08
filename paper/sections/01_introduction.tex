@@ -1,0 +1,113 @@
+\section{Introduction}
+A representation changes which distinctions an agent can use. A repair can
+improve task performance, alter the label of the representation currently
+installed, and change the observations available for evaluating earlier
+decisions. These effects create two questions that should be studied together
+without identifying their objectives: how much evidence is needed to certify
+an old representation when repair is allowed, and when should an agent
+intervene under a finite task deadline?
+
+For old-label certification, repairing first can change which pre-repair
+alternatives must be ruled out. Suppose three environments have old labels
+$(0,0,1)$, and a repair reveals whether the environment is in $\{1\}$ or
+$\{2,3\}$. In environment 1, it may be efficient to rule out environment 2
+and then use the decoder $(0,1)$. The unresolved environment 3 has the
+opposite old label, but the post-repair observation can distinguish it from
+environment 1. Certifying the final old label before any repair would instead
+need to rule out environment 3 directly.
+
+For current-label task control, the relevant decision can differ even without
+a high-confidence constraint. A Bayes declaration compares the two costs of
+misclassifying the installed representation. An intervention compares task
+losses, its own price, remaining time, and future information. These comparisons
+can favor different actions at the same belief. A noisy verification option can
+also split the optimal repair region into disconnected intervals.
+
+We formalize both questions in finite known models with one joint
+observation--state convention and explicit loss accounting. All declared
+theorems include proofs. The principal results are:
+\begin{enumerate}
+\item A reduction from an ordered repair experiment to a finite
+multiple-correct-answer problem, with optimal old-label certification cost
+$g_i\log(1/\delta)/D_i$, a common attaining policy, and fully charged deadline
+tails (Theorem~\ref{thm:main}).
+\item A factorization of $D_i$ across post-repair classes and a polynomial
+eligibility test for the same likelihood-ratio policy
+(Theorems~\ref{thm:factorization} and \ref{thm:polynomial}).
+\item A finite-deadline information bound and a matching shrinking-channel
+regime in which the joint coefficient returns to the certification-before-repair
+coefficient, despite distinct post laws at every confidence level
+(Theorems~\ref{thm:deadline-lower} and \ref{thm:collapse}).
+\item For finite-horizon Bayes control, an exact declaration-gate cost identity,
+a bound on the number of repair-region components, and a full-support TP2
+example attaining two components (Theorems~\ref{thm:gate},
+\ref{thm:geometry}, and \ref{thm:counter}).
+\item Exact no-information gate costs and a constructive logarithmic gate-cost
+upper bound with repeatable identifiable verification
+(Proposition~\ref{prop:noinfo} and Theorem~\ref{thm:log}), with reproducible
+finite computations under each stated contract.
+\end{enumerate}
+
+The common message is precise: evidence required for a final assertion and
+evidence sufficient to select a useful intervention need not coincide.
+The two policy restrictions in this paper are different. Certification before
+repair commits to a fixed old-label answer under a uniform error constraint.
+A declaration gate restricts interventions according to a Bayes decision
+boundary about the current representation. We compare policies only within
+one objective and one set of physical kernels at a time.
+
+\paragraph{Scope and contribution.}
+The statistical max--min answer complexity, belief-state recursion, and
+information-comparison tools are established ideas. Our focus is their explicit
+repair interpretation, the classwise factorization, finite-deadline boundary,
+and repair-region structure in the stated models. No result assumes that
+calling a state a representation automatically makes a new control theory.
+Proposition~\ref{prop:realize} shows why arbitrary finite risk tables can fit
+the adequacy definition. Open-ended representation discovery, unknown model
+learning, and arbitrary repeated repair remain outside the proved scope.
+
+\section{Related work}
+\label{sec:related}
+The closest statistical comparison is pure exploration with multiple correct
+answers \citep{degenne2019}. Its answer-dependent alternatives become the
+invalidating environments of a post-repair decoder. With only one pre channel,
+there is no experiment-allocation optimization. The coefficient's max--min
+form is therefore not claimed as a new principle. The ordered-process
+reduction and deadline accounting are established explicitly, while the
+disjoint class coordinates yield the polynomial implementation in
+Section~\ref{sec:decoder-structure}.
+
+Sequential change of measure connects sample counts and information
+\citep{kaufmann2016}; non-uniform costs and controlled sensing have also been
+studied \citep{nitinawarat2015}. We use finite likelihood-ratio martingales and
+bounded-increment concentration \citep{hoeffding1963}. The finite-deadline
+bound accounts for information from both phases and exposes a nonuniform
+limit of the free-post-information coefficient.
+
+Finite-horizon POMDP belief states and piecewise-linear value functions are
+classical \citep{smallwood1973}. Their concavity supplies the repair-region
+component argument; the Bellman equation itself is not a contribution.
+Inspection and maintenance already combine observation and intervention
+\citep{morato2022,zhang2023}. Structural POMDP results require conditions beyond
+an informative ordered channel \citep{krishnamurthy2018}. Our TP2 example shows
+that this channel condition alone is insufficient for a connected repair
+region, and does not contradict theorems with additional cost and transition
+conditions. Pure-information monotonicity follows from Blackwell comparison
+\citep{blackwell1953}.
+
+Model editing provides a broader example of changing stored computational
+content \citep{meng2022memit}, while learning to defer studies a predictor's
+use of an expert \citep{mozannar2020defer}. These motivate repair and fallback,
+but we neither model a specific editing method nor claim empirical gains for
+a deployed language-model system. The fixed-representation M1 manuscript
+\citep{huang2026} motivates the adequacy question. The present proofs are
+self-contained; its fixed-confidence objective is not silently identified
+with a finite Bayes horizon.
+
+\paragraph{Notation.}
+All logarithms are natural. For finite laws,
+$\KL(P\Vert Q)=\sum_yP(y)\log(P(y)/Q(y))$.
+We use $\min\varnothing=+\infty$ and $c/(+\infty)=0$.
+A uniform error guarantee belongs to one implementable policy used in every
+environment. An environment-indexed infimum still ranges over this policy
+class; the controller is never given the true index.

@@ -1,0 +1,4 @@
+# Core solver and unittest checks require only the Python standard library.
+# This file specifies the supported visualization dependencies, not a universal lock.
+numpy>=1.24
+matplotlib>=3.7

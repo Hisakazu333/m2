@@ -1,0 +1,35 @@
+[
+  {
+    "policy": "joint",
+    "value": 0.73146152,
+    "exact_value": "9143269/12500000",
+    "action": "REPAIR",
+    "conditional_errors": [
+      0.036824,
+      0.036824,
+      0.017384
+    ]
+  },
+  {
+    "policy": "gate_095",
+    "value": 0.834144,
+    "exact_value": "26067/31250",
+    "action": "VERIFY",
+    "conditional_errors": [
+      0.232,
+      0.072,
+      0.072
+    ]
+  },
+  {
+    "policy": "no_repair",
+    "value": 0.834144,
+    "exact_value": "26067/31250",
+    "action": "VERIFY",
+    "conditional_errors": [
+      0.232,
+      0.072,
+      0.072
+    ]
+  }
+]

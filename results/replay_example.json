@@ -1,0 +1,108 @@
+{
+  "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349",
+  "restriction": "joint",
+  "history": [
+    {
+      "before": {
+        "remaining": 5,
+        "state": "old",
+        "belief": [
+          "7/10",
+          "3/10"
+        ],
+        "action": "REPAIR",
+        "expected_remaining_loss": "923/400",
+        "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349"
+      },
+      "event": {
+        "observation": "success",
+        "next_state": "new"
+      },
+      "predictive_probability": "27/40"
+    },
+    {
+      "before": {
+        "remaining": 4,
+        "state": "new",
+        "belief": [
+          "7/9",
+          "2/9"
+        ],
+        "action": "KEEP",
+        "expected_remaining_loss": "16/15",
+        "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349"
+      },
+      "event": {
+        "observation": "none",
+        "next_state": "new"
+      },
+      "predictive_probability": "1"
+    },
+    {
+      "before": {
+        "remaining": 3,
+        "state": "new",
+        "belief": [
+          "7/9",
+          "2/9"
+        ],
+        "action": "KEEP",
+        "expected_remaining_loss": "41/45",
+        "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349"
+      },
+      "event": {
+        "observation": "none",
+        "next_state": "new"
+      },
+      "predictive_probability": "1"
+    },
+    {
+      "before": {
+        "remaining": 2,
+        "state": "new",
+        "belief": [
+          "7/9",
+          "2/9"
+        ],
+        "action": "KEEP",
+        "expected_remaining_loss": "34/45",
+        "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349"
+      },
+      "event": {
+        "observation": "none",
+        "next_state": "new"
+      },
+      "predictive_probability": "1"
+    },
+    {
+      "before": {
+        "remaining": 1,
+        "state": "new",
+        "belief": [
+          "7/9",
+          "2/9"
+        ],
+        "action": "KEEP",
+        "expected_remaining_loss": "3/5",
+        "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349"
+      },
+      "event": {
+        "observation": "none",
+        "next_state": "new"
+      },
+      "predictive_probability": "1"
+    }
+  ],
+  "current": {
+    "remaining": 0,
+    "state": "new",
+    "belief": [
+      "7/9",
+      "2/9"
+    ],
+    "declaration": "0",
+    "expected_remaining_loss": "4/9",
+    "model_hash": "4abf37e476bb4e5b83c5f6e3e4f117d796f56fe3f1ea9b9cf998282267ce5349"
+  },
+  "data_kind": "observable synthetic finite-model replay"
+}

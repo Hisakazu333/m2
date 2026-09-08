@@ -1,0 +1,122 @@
+\section{The exact cost of a declaration gate}
+\label{sec:gate}
+Let $V_h^G$ denote the optimal value with a nonempty gate $G_h(b,x)$ and with the
+same terminal choices as the joint controller. Define
+\begin{equation}
+A_h(b,x,a)=\mathcal Q_h(b,x,a)-V_h(b,x)\ge0,
+\qquad W_h(b,x)=V_h^G(b,x)-V_h(b,x).
+\end{equation}
+The quantity $A_h$ is a loss advantage: it is the excess cost of choosing $a$
+once and then continuing optimally without the gate.
+
+\begin{theorem}[Exact gate-cost characterization]
+\label{thm:gate}
+For every finite model of Section~\ref{sec:model} and every nonempty action gate,
+\begin{align}
+W_0(b,x)&=0,\\
+W_h(b,x)&=\min_{a\in G_h(b,x)}
+ \left\{A_h(b,x,a)+
+  \sum_{y,x'}q_b(y,x'\mid x,a)W_{h-1}(\Phi(b,x,a,y,x'),x')\right\}.
+\label{eq:gapdp}
+\end{align}
+Equivalently,
+\begin{equation}
+W_T(\mu,x_0)=
+\min_{\pi\in\Pi_G}\E_\mu^\pi
+\left[\sum_{t=0}^{T-1}A_{T-t}(b_t,X_t,A_t)\right],
+\label{eq:gapoccupancy}
+\end{equation}
+where terminal decisions are chosen optimally. Consequently:
+\begin{enumerate}
+\item $W_h(b,x)\ge\min_{a\in G_h(b,x)}A_h(b,x,a)$.
+\item Every feasible gated policy gives an upper certificate by the expectation
+in \eqref{eq:gapoccupancy}.
+\item $W_T(\mu,x_0)=0$ if and only if there is a gated policy selecting a joint
+optimal action at every node it reaches with positive probability.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Substitute $V_{h-1}^G=V_{h-1}+W_{h-1}$ into the gated Bellman equation and
+subtract $V_h$. This proves \eqref{eq:gapdp}. For any policy with optimal terminal
+decisions, conditional expectation gives
+\[
+\E[\ell_t+V_{T-t-1}(b_{t+1},X_{t+1})-V_{T-t}(b_t,X_t)\mid\cH_t,A_t]
+=A_{T-t}(b_t,X_t,A_t).
+\]
+Sum over $t$. The continuation terms telescope, and the expected terminal loss
+equals $V_0$, yielding $J_T(\pi)-V_T=\E^\pi\sum_t A_{T-t}$.
+Minimizing proves \eqref{eq:gapoccupancy}. All advantages are nonnegative, proving
+the certificates. An optimal gated finite policy tree exists. A finite sum of
+nonnegative node contributions is zero exactly when each positive-probability
+node contributes zero. This proves the last equivalence.
+\end{proof}
+
+The theorem is an application of standard Bellman telescoping. Its use here is
+to make the proposed separation comparison exact. A local forbidden repair is
+not enough to imply a positive initial gap: an optimal policy may avoid that
+belief altogether. Conversely, a strict forbidden optimum at the initial belief
+immediately yields a positive lower certificate. The gate gap also accounts for
+changes in future observations caused by actions; it is not a difference between
+two static task costs.
+
+\subsection{An exact no-information benchmark}
+Assume two environments with prior $p=\Pp(I=1)$, labels
+$\Theta_0(f_0)=1$, $\Theta_1(f_0)=0$, and a deterministic irreversible repair to
+$f_1$ with reversed labels. Old task losses are $(0,r)$ and repaired losses
+are $(s,0)$, where $r,s>0$. Repair costs $c_r>0$, takes effect before its current
+task, and has no subsequent control decisions other than continuing. Neither
+mode gives environment information. There is no verification or fallback, and
+terminal penalties are symmetric, $\lambda>0$.
+
+\begin{lemma}[Immediate repair or no repair]
+\label{lem:immediate}
+An optimal policy either repairs now or never repairs.
+\end{lemma}
+\begin{proof}
+No observation changes the prior. Repairing after $t$ old-mode rounds costs
+$tpr+c_r+(h-t)(1-p)s+\lambda\min(p,1-p)$ for $0\le t<h$.
+Never repairing costs $hpr+\lambda\min(p,1-p)$.
+If $a=pr-(1-p)s\le0$, no repair helps. If $a>0$, the saving
+$(h-t)a-c_r$ is largest at $t=0$. Randomization produces only convex combinations
+of these costs.
+\end{proof}
+
+\begin{proposition}[Threshold and exact separation gap]
+\label{prop:noinfo}
+In this family, for $h\ge1$,
+\begin{equation}
+V_h(p)=\lambda\min(p,1-p)+
+\min\{hpr,\ c_r+h(1-p)s\}.
+\end{equation}
+Repair is weakly optimal exactly when
+\begin{equation}
+p\ge p_{\inte}(h)=\frac{c_r+hs}{h(r+s)}.
+\label{eq:threshold}
+\end{equation}
+With the declaration gate $p_{\dec}=1/2$,
+\begin{equation}
+W_h(p)=\ind\{p<1/2\}
+\max\{0,\ h[pr-(1-p)s]-c_r\}.
+\label{eq:linear}
+\end{equation}
+The interval of strict intervention before declaration is nonempty exactly when
+$h(r-s)>2c_r$.
+\end{proposition}
+\begin{proof}
+The label reversal preserves the symmetric terminal risk, so
+Lemma~\ref{lem:immediate} gives the value and threshold. If $p<1/2$, the unchanged
+posterior never opens the gate and its value is the never-repair cost. If
+$p\ge1/2$, the gate excludes no repair plan. Subtraction gives \eqref{eq:linear}.
+Finally $p_{\inte}(h)<1/2$ is equivalent to the stated strict inequality.
+\end{proof}
+
+The boundary cases are explicit. A threshold above one gives an empty repair
+region; a threshold equal to one gives a tie only at $p=1$.
+The threshold increases with $c_r$, and
+\begin{equation}
+p_{\inte}(h+1)-p_{\inte}(h)
+=-\frac{c_r}{h(h+1)(r+s)}<0.
+\end{equation}
+For $h=10$, $r=2$, $s=1/2$, $c_r=1$, $p=3/10$, and $\lambda=1$,
+$p_{\inte}=6/25$, $V_h=24/5$, and $V_h^G=63/10$. The exact gap is $3/2$.
+This is a useful analytic benchmark, not by itself a deep general control result.

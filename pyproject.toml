@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "m2fh"
+version = "0.2.0"
+description = "Exact finite-horizon representation-adequacy intervention"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+figures = ["numpy>=1.24", "matplotlib>=3.7"]
+
+[project.scripts]
+m2fh = "m2fh.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

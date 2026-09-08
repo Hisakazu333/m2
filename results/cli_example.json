@@ -1,0 +1,478 @@
+{
+  "value": "26067/31250",
+  "value_float": 0.834144,
+  "policy": {
+    "model_hash": "ce52ab9f2d8906cf843f9a233686c1f52ed680d6e69ef7a8478c45dffb3b5ba2",
+    "restriction": "gate",
+    "root": 0,
+    "nodes": [
+      {
+        "id": 0,
+        "remaining": 6,
+        "state": "old",
+        "belief": [
+          "3/5",
+          "1/4",
+          "3/20"
+        ],
+        "value": "26067/31250",
+        "action": "VERIFY",
+        "action_values": {
+          "KEEP": "1189/1250",
+          "VERIFY": "26067/31250",
+          "FALLBACK": "23/25"
+        },
+        "edges": [
+          {
+            "observation": "0",
+            "next_state": "old",
+            "probability": "14/25",
+            "node": 1
+          },
+          {
+            "observation": "1",
+            "next_state": "old",
+            "probability": "11/25",
+            "node": 16
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "remaining": 5,
+        "state": "old",
+        "belief": [
+          "6/7",
+          "5/56",
+          "3/56"
+        ],
+        "value": "1798/4375",
+        "action": "VERIFY",
+        "action_values": {
+          "KEEP": "3/7",
+          "VERIFY": "1798/4375",
+          "FALLBACK": "47/70"
+        },
+        "edges": [
+          {
+            "observation": "0",
+            "next_state": "old",
+            "probability": "5/7",
+            "node": 2
+          },
+          {
+            "observation": "1",
+            "next_state": "old",
+            "probability": "2/7",
+            "node": 7
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "remaining": 4,
+        "state": "old",
+        "belief": [
+          "24/25",
+          "1/40",
+          "3/200"
+        ],
+        "value": "1/10",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "1/10",
+          "VERIFY": "9/50",
+          "FALLBACK": "1/2"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 3
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "remaining": 3,
+        "state": "old",
+        "belief": [
+          "24/25",
+          "1/40",
+          "3/200"
+        ],
+        "value": "2/25",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "2/25",
+          "VERIFY": "4/25",
+          "FALLBACK": "19/50"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 4
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "remaining": 2,
+        "state": "old",
+        "belief": [
+          "24/25",
+          "1/40",
+          "3/200"
+        ],
+        "value": "3/50",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "3/50",
+          "VERIFY": "7/50",
+          "FALLBACK": "13/50"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 5
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "remaining": 1,
+        "state": "old",
+        "belief": [
+          "24/25",
+          "1/40",
+          "3/200"
+        ],
+        "value": "1/25",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "1/25",
+          "VERIFY": "3/25",
+          "FALLBACK": "7/50"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 6
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "remaining": 0,
+        "state": "old",
+        "belief": [
+          "24/25",
+          "1/40",
+          "3/200"
+        ],
+        "value": "1/50",
+        "declaration": "1"
+      },
+      {
+        "id": 7,
+        "remaining": 4,
+        "state": "old",
+        "belief": [
+          "3/5",
+          "1/4",
+          "3/20"
+        ],
+        "value": "823/1250",
+        "action": "VERIFY",
+        "action_values": {
+          "KEEP": "19/25",
+          "VERIFY": "823/1250",
+          "FALLBACK": "17/25"
+        },
+        "edges": [
+          {
+            "observation": "0",
+            "next_state": "old",
+            "probability": "14/25",
+            "node": 8
+          },
+          {
+            "observation": "1",
+            "next_state": "old",
+            "probability": "11/25",
+            "node": 12
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "remaining": 3,
+        "state": "old",
+        "belief": [
+          "6/7",
+          "5/56",
+          "3/56"
+        ],
+        "value": "2/7",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "2/7",
+          "VERIFY": "8/25",
+          "FALLBACK": "151/350"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 9
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "remaining": 2,
+        "state": "old",
+        "belief": [
+          "6/7",
+          "5/56",
+          "3/56"
+        ],
+        "value": "3/14",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "3/14",
+          "VERIFY": "19/70",
+          "FALLBACK": "109/350"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 10
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "remaining": 1,
+        "state": "old",
+        "belief": [
+          "6/7",
+          "5/56",
+          "3/56"
+        ],
+        "value": "1/7",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "1/7",
+          "VERIFY": "39/175",
+          "FALLBACK": "67/350"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old",
+            "probability": "1",
+            "node": 11
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "remaining": 0,
+        "state": "old",
+        "belief": [
+          "6/7",
+          "5/56",
+          "3/56"
+        ],
+        "value": "1/14",
+        "declaration": "1"
+      },
+      {
+        "id": 12,
+        "remaining": 3,
+        "state": "old",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "273/550",
+        "action": "FALLBACK",
+        "action_values": {
+          "KEEP": "37/50",
+          "VERIFY": "431/550",
+          "FALLBACK": "273/550"
+        },
+        "edges": [
+          {
+            "observation": "fallback",
+            "next_state": "old_fallback",
+            "probability": "1",
+            "node": 13
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "remaining": 2,
+        "state": "old_fallback",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "207/550",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "207/550"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old_fallback",
+            "probability": "1",
+            "node": 14
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "remaining": 1,
+        "state": "old_fallback",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "141/550",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "141/550"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old_fallback",
+            "probability": "1",
+            "node": 15
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "remaining": 0,
+        "state": "old_fallback",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "3/22",
+        "declaration": "0"
+      },
+      {
+        "id": 16,
+        "remaining": 5,
+        "state": "old",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "81/110",
+        "action": "FALLBACK",
+        "action_values": {
+          "KEEP": "49/50",
+          "VERIFY": "13967/13750",
+          "FALLBACK": "81/110"
+        },
+        "edges": [
+          {
+            "observation": "fallback",
+            "next_state": "old_fallback",
+            "probability": "1",
+            "node": 17
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "remaining": 4,
+        "state": "old_fallback",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "339/550",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "339/550"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old_fallback",
+            "probability": "1",
+            "node": 18
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "remaining": 3,
+        "state": "old_fallback",
+        "belief": [
+          "3/11",
+          "5/11",
+          "3/11"
+        ],
+        "value": "273/550",
+        "action": "KEEP",
+        "action_values": {
+          "KEEP": "273/550"
+        },
+        "edges": [
+          {
+            "observation": "none",
+            "next_state": "old_fallback",
+            "probability": "1",
+            "node": 13
+          }
+        ]
+      }
+    ],
+    "complete": true
+  },
+  "diagnostics": {
+    "loss": "26067/31250",
+    "components": {
+      "task": "9571/15625",
+      "verify": "86/625",
+      "repair": "0",
+      "fallback": "0",
+      "defer": "0",
+      "other_direct": "0",
+      "terminal": "21/250",
+      "miss": "18/625",
+      "false_alarm": "87/625",
+      "abstain": "0"
+    },
+    "expected_action_counts": {
+      "VERIFY": "43/25",
+      "FALLBACK": "319/625",
+      "KEEP": "2356/625"
+    }
+  }
+}

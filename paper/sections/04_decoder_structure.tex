@@ -1,0 +1,107 @@
+\section{Decoder structure and polynomial implementation}
+\label{sec:decoder-structure}
+The answer space contains $2^M$ maps, where $M=|\calC|$. Its coordinates are
+indexed by disjoint observational classes, which gives a factorization that is
+not available for an arbitrary multiple-answer identification problem.
+
+\subsection{Computing the coefficient without enumerating answers}
+For a class $C$ and a candidate output $\ell\in\{0,1\}$, put
+\[
+r_i(C,\ell)=\min_{j\in C:\theta_j\ne\ell}\KL(P_i\Vert P_j),
+\qquad
+\mathcal L_i(C)=
+\begin{cases}
+\{\theta_i\},&C=C_i,\\
+\{0,1\},&C\ne C_i.
+\end{cases}
+\]
+The empty minimum is $+\infty$.
+\begin{theorem}[Factorized decoder coefficient]
+\label{thm:factorization}
+Under Assumption~\ref{ass:repair},
+\begin{equation}
+D_i=\min_{C\in\calC}\ \max_{\ell\in\mathcal L_i(C)}r_i(C,\ell).
+\label{eq:factorization}
+\end{equation}
+An optimal decoder can be obtained by selecting, independently in each class,
+any allowed $\ell$ with $r_i(C,\ell)\ge D_i$. Choosing the smallest such $\ell$
+in every coordinate gives the lexicographically first global optimum.
+Given the pairwise KL matrix, all $D_i$ and a corresponding decoder for each
+environment require $O(K^2+KM)$ arithmetic operations.
+\end{theorem}
+\begin{proof}
+For every decoder valid in $i$,
+\[
+d_i(a)=\min_{C\in\calC}r_i(C,a(C)).
+\]
+Its coordinate in class $C$ belongs to $\mathcal L_i(C)$. Thus
+$d_i(a)\le\min_C\max_{\ell\in\mathcal L_i(C)}r_i(C,\ell)$.
+Conversely choose a maximizing label in each class. All choices satisfy
+validity in $i$, and their minimum equals the displayed upper bound.
+This proves equality. Once $D_i$ is known, a valid decoder is globally optimal
+exactly when every coordinate meets this threshold. Coordinatewise smallest
+feasible choices therefore yield the first lexicographic optimum; requiring
+every coordinate to be a local maximizer would unnecessarily discard some
+global optima.
+
+For one row of the KL matrix, scan the $K$ environments and keep, in each
+class, the smallest divergence for each of the two labels. These give every
+$r_i(C,\ell)$ in $O(K+M)$ operations. Scan the classes again to take the
+bottleneck and construct a decoder. Repeat for all $i$. Computing the KL
+matrix itself uses $O(K^2|\mathcal X_{\rm pre}|)$ operations for a finite
+pre-repair alphabet, before accounting for numerical precision.
+\end{proof}
+
+For a class containing only one old label, choosing that label incurs no
+invalidating alternative and contributes $+\infty$ to the bottleneck.
+Mixed-label classes are therefore the only effective constraints. In class
+$C_i$ the output is fixed to $\theta_i$; other classes may be assigned whichever
+label leaves the easier set of alternatives to exclude. This is the mechanism
+behind same-label exclusion in Section~\ref{sec:example}.
+
+\subsection{A surviving-set test for the likelihood-ratio race}
+Let $s_j(n)=\sum_{t=1}^n\log P_j(X_t)$ and define, for a candidate witness $k$,
+\[
+S_k(n)=\{j:s_k(n)-s_j(n)<\beta_\delta\}.
+\]
+It includes $k$, since $\beta_\delta>0$.
+
+\begin{theorem}[Polynomial eligibility test]
+\label{thm:polynomial}
+A decoder eligible with witness $k$ in \eqref{eq:race} exists if and only if
+every nonempty intersection $S_k(n)\cap C$ has a single old label.
+For such a witness, each nonempty intersection forces that label as the
+coordinate $a(C)$; every empty intersection leaves the coordinate free.
+Consequently, the lexicographically first eligible decoder can be found in
+$O(K^2+KM)$ operations per observation, without enumerating $2^M$ maps.
+For the separated race, eligibility is equivalent to all members of $S_k(n)$
+having one common old label.
+\end{theorem}
+\begin{proof}
+The likelihood condition requires every invalidating environment $j\in B(a)$
+to lie outside $S_k(n)$. Equivalently, $a(C_j)=\theta_j$ for every surviving
+$j$. One coordinate can satisfy these requirements precisely when the labels
+within each surviving class intersection agree. Since $k$ survives, the
+resulting decoder is automatically valid at its witness.
+
+For each witness, assign the forced labels and zero to unconstrained
+coordinates. This is the smallest eligible decoder for that witness. Taking
+the smallest of these candidates, with the witness index as a secondary
+tie-break, returns exactly the first decoder of an exhaustive lexicographic
+race. A scan over the $K$ environments followed by the $M$ coordinates
+suffices for each witness. Constant decoders satisfy all surviving constraints
+exactly when their labels agree globally.
+\end{proof}
+
+This implementation realizes the same statistical rule analyzed below; it
+does not change its threshold or error guarantee. An online controller stores
+$K$ log-likelihood scores, the class and label maps, and a candidate decoder.
+Its working storage can be $O(K+M)$ when witnesses are checked successively.
+Floating-point equality at a likelihood threshold is still a numerical issue:
+the exact rule uses the displayed strict surviving-set inequality, and the
+implementation uses the complementary comparisons consistently.
+
+The finite Bernoulli evaluator batches many possible count histories, so its
+time and storage costs differ from those of a single online trajectory.
+Its bit-coded batch implementation supports at most 60 classes; the scalar
+polynomial implementation has no such encoding restriction.

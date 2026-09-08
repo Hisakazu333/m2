@@ -1,0 +1,175 @@
+\section{Finite-horizon representation intervention}
+\label{sec:model}
+\subsection{Environment, representation, and adequacy}
+Let $I\in\cE=\{1,\ldots,K\}$ be an unknown environment drawn once from a known
+prior $\mu$. It remains fixed during deployment. Candidate representations form
+a finite set $\cF$. In environment $i$, let $H^{\rm ref}$ be a finite reference
+task variable, let $\mathcal U$ be a finite task-action set, and let
+$\ell_i^{\rm ref}(H^{\rm ref},u)$ be a nonnegative loss. Define
+\begin{align}
+R_i^{*,{\rm full}}&=\min_d\E_i[\ell_i^{\rm ref}(H^{\rm ref},d(H^{\rm ref}))],\\
+R_i^{*,f}&=\min_{\tilde d}\E_i[
+  \ell_i^{\rm ref}(H^{\rm ref},\tilde d(f(H^{\rm ref})))],\\
+\Delta_i(f)&=R_i^{*,f}-R_i^{*,{\rm full}},\qquad
+\Theta_i(f)=\ind\{\Delta_i(f)=0\}.
+\end{align}
+Randomized rules can be included and do not improve these finite unconstrained
+minima. These are environment-wise reference optima, not a claim that the
+deployment controller knows $i$. When a stage task loss is identified with
+$\Delta_i(f)$, a realizable task/controller interface must justify that
+identification.
+
+\begin{proposition}[Finite risk-table realization]
+\label{prop:realize}
+For any nonnegative finite table $(d_{ij})_{i\le K,j\le M}$, there is a finite
+reference problem and $M$ representations satisfying
+$R_i^{*,{\rm full}}=0$ and $\Delta_i(f_j)=d_{ij}$. Their visible representation
+outputs can have the same distribution in every environment.
+\end{proposition}
+\begin{proof}
+Take independent fair bits $Z_1,\ldots,Z_M$, task action
+$u\in\{0,1\}^M$, and loss
+$\ell_i^{\rm ref}(Z,u)=2\sum_jd_{ij}\ind\{u_j\ne Z_j\}$.
+Let $f_j$ expose every bit except $Z_j$. Full information gives zero loss.
+Under $f_j$, copying observed bits and guessing the missing bit incurs $d_{ij}$;
+independence makes a lower loss impossible. The joint bit distribution does not
+depend on $i$. In deployment, use fresh bits each round and do not reveal task
+targets or actual task losses beyond this interface.
+\end{proof}
+This proposition also limits the semantics: arbitrary nonnegative loss tables
+can be represented in this way. Merely assigning adequacy labels to a finite
+control problem therefore adds no automatic structural restriction.
+
+\subsection{Visible state, actions, and event order}
+The visible state is $X_t=(F_t,M_t,B_t)$ in a finite set $\cX$, comprising a
+representation, policy mode, and intervention budget. At time
+$t=0,\ldots,T-1$, the agent chooses $A_t\in\cA(X_t)$, a nonempty finite set.
+The available actions may include $\KEEP$, $\VERIFY$, $\REPAIR$,
+$\FALLBACK$, $\DEFER$, and additional known information actions.
+A fallback changes the policy mode without changing the representation; repair
+changes the representation and can consume a budget even on failure.
+
+The observable event is the pair $(Y_{t+1},X_{t+1})$ with joint kernel
+\begin{equation}
+\mathsf K_i(y,x'\mid x,a),\qquad
+\sum_{y,x'}\mathsf K_i(y,x'\mid x,a)=1.
+\end{equation}
+The loss is $\ell_i(x,a,y,x')\in[0,L_{\max}]$, including task and direct action
+costs exactly once. Loss is not implicitly observed. If reward, task success,
+or actual loss is visible, that feedback must be included in the kernel.
+In particular, a visible successful repair may itself reveal information when
+its probability depends on the environment.
+
+The general kernel permits either intervention timing convention if the loss is
+specified consistently. All analytic binary instances and all supplied family
+configurations use \emph{intervention before the current task}: a successful
+repair affects the current round as well as subsequent rounds. A failed attempt
+uses the old representation in its current round. Verification costs and any
+task loss during verification are explicit configuration parameters. The separate three-environment fixture in Section~\ref{sec:experiments} instead uses next-task repair; its costs are explicitly different.
+
+\subsection{Terminal decisions and a common objective}
+At time $T$, the agent selects $D_T\in\mathcal D(X_T)$, where binary decisions
+$0,1$ are always available and abstention may additionally be available.
+The terminal loss is
+\begin{align}
+L_i(x,d)={}&L_i^{\rm deploy}(x)
+ +\lambda_{\rm miss}\ind\{\Theta_i(f_x)=0,d=1\}\nonumber\\
+ &+\lambda_{\rm FA}\ind\{\Theta_i(f_x)=1,d=0\}
+ +\lambda_\bot\ind\{d=\bot\}.
+\end{align}
+All terminal losses are finite and nonnegative. The objective is
+\begin{equation}
+J_T(\pi;\mu,x_0)=
+\E_\mu^\pi\left[\sum_{t=0}^{T-1}\ell_I(X_t,A_t,Y_{t+1},X_{t+1})
+             +L_I(X_T,D_T)\right].
+\label{eq:objective}
+\end{equation}
+There is no intermediate commitment action and no cancellation of task losses
+after a declaration. The terminal target is $\Theta_I(F_T)$, not
+$\Theta_I(F_0)$.
+
+\subsection{Belief recursion and the declaration benchmark}
+For the observable history $\cH_t$, let
+$b_t(i)=\Pp(I=i\mid\cH_t)$. The predictive probability and posterior are
+\begin{align}
+q_b(y,x'\mid x,a)&=\sum_i b(i)\mathsf K_i(y,x'\mid x,a),\\
+\Phi_i(b,x,a,y,x')&=
+\frac{b(i)\mathsf K_i(y,x'\mid x,a)}{q_b(y,x'\mid x,a)}.
+\end{align}
+Only events with positive predictive probability are conditioned upon.
+Write $p(b,x)=\sum_i b(i)\ind\{\Theta_i(f_x)=0\}$. With binary declarations,
+positive error costs, and no abstention, an immediate declaration would prefer
+\emph{inadequate} exactly when
+\begin{equation}
+p(b,x)\ge p_{\dec}
+=\frac{\lambda_{\rm FA}}{\lambda_{\rm FA}+\lambda_{\rm miss}}.
+\label{eq:declaration}
+\end{equation}
+Equality permits declaring inadequate. This is a Bayes classification boundary.
+For symmetric costs it is $1/2$; it is not $1-\delta$ and is not a
+high-confidence certification requirement.
+
+Define $G_h(b,x)\subseteq\cA(x)$ by removing $\REPAIR$ and $\FALLBACK$ whenever
+$p(b,x)<p_{\dec}$, with other actions retained. We assume $G_h(b,x)$ remains
+nonempty. The joint and gated policy classes use the same model and objective;
+only this restriction differs. An abstention extension requires a separately
+specified gate based on its full terminal decision regions.
+
+\subsection{Standard optimal control}
+With $h$ rounds left, write $V_h(b,x)$ for the unrestricted minimum loss.
+Then
+\begin{align}
+V_0(b,x)&=\min_d\sum_i b(i)L_i(x,d),\\
+\mathcal Q_h(b,x,a)&=\sum_{y,x'}\sum_i b(i)\mathsf K_i(y,x'\mid x,a)
+ \left[\ell_i(x,a,y,x')+V_{h-1}(\Phi(b,x,a,y,x'),x')\right],\\
+V_h(b,x)&=\min_{a\in\cA(x)}\mathcal Q_h(b,x,a).
+\label{eq:bellman}
+\end{align}
+Zero-probability terms are omitted. The continuation value inside the sum is
+independent of the summation index $i$.
+
+\begin{proposition}[Standard sufficiency and concavity]
+\label{prop:standard}
+The state $(h,b,x)$ is sufficient. A deterministic belief-Markov optimum exists.
+For fixed $h,x$, $V_h(b,x)$ is the minimum of finitely many linear functions of
+$b$, hence is continuous, piecewise linear, and concave.
+\end{proposition}
+\begin{proof}
+Conditioning on $(b,x)$ determines the joint law of each next event and its
+expected cost. Backward induction proves sufficiency and attainment over finite
+action sets. Alternatively, fix any deterministic observation-contingent policy
+tree, including its terminal declarations. Its environment-wise losses form a
+vector $\alpha$, and its Bayes loss is $b^\top\alpha$. There are finitely many such
+trees for finite horizon and alphabets. Minimizing over these vectors proves the
+claimed geometry.
+\end{proof}
+These properties hold for the unrestricted model. A gate whose admissible
+actions depend on belief need not preserve concavity. Also, for $K>2$, the scalar
+$p(b,x)$ generally does not determine kernels or future losses; the entire belief
+is needed.
+
+\subsection{The two contracts used in this paper}
+The joint-event convention applies to both parts, but their objectives are
+specified separately. The certification part fixes the target
+$\theta_i=\Theta_i(F_0)$ and imposes a uniform error constraint at a
+confidence-dependent deadline. The Bayes part uses
+\eqref{eq:objective} and the actual terminal representation $F_T$.
+Certification pre-slot costs $g_i$ include observation and task costs;
+they are not stipulated to equal the excess risk $\Delta_i(F_0)$.
+The zero post-cost condition is a substantive additional assumption.
+
+\begin{center}\small
+\begin{tabular}{p{.25\linewidth}p{.32\linewidth}p{.32\linewidth}}
+\toprule
+ & Old-label certification & Current-label control\\\midrule
+Target & $\Theta_i(F_0)$ & $\Theta_i(F_T)$\\
+Error treatment & Uniform probability $\le\delta$ & Terminal Bayes penalty\\
+Time & $H_\delta=\lceil\log^2(1/\delta)\rceil$ & Fixed finite $T$\\
+Restriction & Commit to old answer before repair & Intervention gate at stated posterior\\
+Post information & Free in cost, consumes slots & Specified joint kernel and costs\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every policy comparison preserves its row's target, costs, and kernels.
+Positive integer macro durations with delayed completion feedback can be
+expanded into unit slots as proved in Appendix~\ref{app:adapters}.

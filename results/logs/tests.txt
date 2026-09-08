@@ -1,0 +1,37 @@
+test_all_pure_classes_allow_immediate_universal_decoder (test_decoder_structure.DecoderStructureTests.test_all_pure_classes_allow_immediate_universal_decoder) ... ok
+test_batch_codes_match_scalar_policy (test_decoder_structure.DecoderStructureTests.test_batch_codes_match_scalar_policy) ... ok
+test_factorized_race_matches_exhaustive_including_threshold_ties (test_decoder_structure.DecoderStructureTests.test_factorized_race_matches_exhaustive_including_threshold_ties) ... ok
+test_factorized_rates_match_enumeration_on_varied_partitions (test_decoder_structure.DecoderStructureTests.test_factorized_rates_match_enumeration_on_varied_partitions) ... ok
+test_finite_protocol_factorized_and_enumerated_agree (test_decoder_structure.DecoderStructureTests.test_finite_protocol_factorized_and_enumerated_agree) ... ok
+test_global_lexicographic_tie_is_not_local_greedy_tie (test_decoder_structure.DecoderStructureTests.test_global_lexicographic_tie_is_not_local_greedy_tie) ... ok
+test_shrinking_post_lower_bound_approaches_separated_coefficient (test_decoder_structure.DecoderStructureTests.test_shrinking_post_lower_bound_approaches_separated_coefficient) ... ok
+test_bellman_against_all_trees (test_exact.ExactModelTests.test_bellman_against_all_trees) ... ok
+test_binomial_tail_against_finite_sum (test_exact.ExactModelTests.test_binomial_tail_against_finite_sum) ... ok
+test_blackwell_monotonicity_same_costs (test_exact.ExactModelTests.test_blackwell_monotonicity_same_costs) ... ok
+test_current_label_and_fallback (test_exact.ExactModelTests.test_current_label_and_fallback) ... ok
+test_decoder_partition_boundaries (test_exact.ExactModelTests.test_decoder_partition_boundaries) ... ok
+test_disconnected_repair_region_exact (test_exact.ExactModelTests.test_disconnected_repair_region_exact) ... ok
+test_exact_serialization (test_exact.ExactModelTests.test_exact_serialization) ... ok
+test_exported_policy_probabilities (test_exact.ExactModelTests.test_exported_policy_probabilities) ... ok
+test_extended_actions_against_all_trees (test_exact.ExactModelTests.test_extended_actions_against_all_trees) ... ok
+test_failure_spends_budget (test_exact.ExactModelTests.test_failure_spends_budget) ... ok
+test_no_information_threshold_and_gate_gap (test_exact.ExactModelTests.test_no_information_threshold_and_gate_gap) ... ok
+test_normalization_rejected (test_exact.ExactModelTests.test_normalization_rejected) ... ok
+test_observed_success_is_information (test_exact.ExactModelTests.test_observed_success_is_information) ... ok
+test_oracle_is_lower_bound (test_exact.ExactModelTests.test_oracle_is_lower_bound) ... ok
+test_performance_difference_identity (test_exact.ExactModelTests.test_performance_difference_identity) ... ok
+test_same_adequacy_probability_different_action (test_exact.ExactModelTests.test_same_adequacy_probability_different_action) ... ok
+test_terminal_asymmetry_and_abstention (test_exact.ExactModelTests.test_terminal_asymmetry_and_abstention) ... ok
+test_uploaded_bayes_table_reconstruction (test_exact.ExactModelTests.test_uploaded_bayes_table_reconstruction) ... ok
+test_zero_probability_rejected (test_exact.ExactModelTests.test_zero_probability_rejected) ... ok
+test_checked_aggregation_preserves_value_and_rejects_false_merge (test_integrated_contracts.IntegratedContractTests.test_checked_aggregation_preserves_value_and_rejects_false_merge) ... ok
+test_duration_completion_and_deadline_feasibility (test_integrated_contracts.IntegratedContractTests.test_duration_completion_and_deadline_feasibility) ... ok
+test_repair_only_gate_metadata_matches_specialized_policy (test_integrated_contracts.IntegratedContractTests.test_repair_only_gate_metadata_matches_specialized_policy) ... ok
+test_tiny_probability_large_loss_is_not_pruned (test_integrated_contracts.IntegratedContractTests.test_tiny_probability_large_loss_is_not_pruned) ... ok
+test_observable_path_reaches_current_label_declaration (test_replay.ReplayTests.test_observable_path_reaches_current_label_declaration) ... ok
+test_unmodeled_event_and_model_mutation_are_rejected (test_replay.ReplayTests.test_unmodeled_event_and_model_mutation_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.968s
+
+OK

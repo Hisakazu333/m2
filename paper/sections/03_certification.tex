@@ -1,0 +1,162 @@
+\section{Old-label certification through one repair}\label{sec:certification}
+\subsection{The ordered experiment}
+We now impose a narrower experiment than the control model above. Let
+$\theta_i\in\{0,1\}$ denote adequacy of the \emph{old} representation.
+It remains the terminal target after repair.
+
+\begin{assumption}[Finite ordered repair experiment]\label{ass:repair}
+The following parameters are fixed as $\delta\downarrow0$.
+\begin{enumerate}
+\item There are finitely many environments. Pre-repair observations are iid
+with pairwise distinct laws $P_i$ on a common finite alphabet, all with full
+support. The binary labels include both values.
+\item A pre-repair task slot costs $g_i>0$ and can supply one observation from
+$P_i$. There is no free informative pre-repair action. Pausing or completing
+old-state tasks does not remove their cost.
+\item After entering the repair phase, no more pre-repair observations are
+available. Each attempt takes one slot and costs $\kappa_i\ge0$, including its
+opportunity cost. It succeeds with known probability $q>0$, independent of
+the environment, previous observations, and other attempts. Success is
+observable and irreversible. A failed attempt can be retried.
+\item After success, each slot supplies an iid observation with law $Q_i$
+on a finite alphabet at zero cost. These observations are independent of
+the pre-repair stream and repair trials conditional on $i$. Distinct $Q_i$
+need not exist for every pair. For simplicity all $Q_i$ have full support.
+\item All action choices use observed data and independent policy randomization.
+Accounting costs are not additional signals. All slots up to the prescribed
+deadline are accounted for, and a declaration is produced by that deadline.
+\end{enumerate}
+\end{assumption}
+The cost $\kappa_i$ is the total cost of a repair slot, not an extra fee to
+which an omitted old-state loss must later be added. Post-repair observations
+are free in cost, not in time. Policies may stop trying repair, in which case
+remaining old-state task slots incur $g_i$. A policy that never repairs has
+only a direct pre-repair declaration. These conventions exclude uncharged
+tails while retaining the natural direct-certification alternative.
+
+Let $L_\delta=\log(1/\delta)$ and
+\begin{equation}\label{eq:horizon}
+ H_\delta=\lceil L_\delta^2\rceil.
+\end{equation}
+For sufficiently small $\delta$, let $\Pi_\delta$ be the ordered policies
+with $\PP_i^\pi(\widehat\theta\ne\theta_i)\le\delta$ for every $i$, and define
+\[
+ J_i^*(\delta)=\inf_{\pi\in\Pi_\delta}\EE_i^\pi C.
+\]
+The separated class $\Pi_\delta^{\rm sep}$ additionally commits to its final
+old-label answer \emph{before its first repair attempt}, using only pre-repair
+observations and policy coins; it must meet the same uniform error guarantee.
+A no-repair policy commits by the deadline. Define $J_i^{\rm sep}(\delta)$
+by the corresponding infimum. This is an operational certification-before-
+repair restriction, not a Bayes posterior threshold.
+
+\subsection{Post-repair classes and admissible answers}
+Let $\calC$ be the partition induced by exact equality of the post-repair
+laws, and write $C_i$ for the class containing $i$. A decoder is a map
+$a:\calC\to\{0,1\}$. Define
+\begin{equation}\label{eq:answers}
+ \cD_i=\{a:a(C_i)=\theta_i\},\qquad
+ B(a)=\{j:a(C_j)\ne\theta_j\}.
+\end{equation}
+The decoder is valid in environment $i$ exactly when $a\in\cD_i$.
+Its invalidating environments may have either old label.
+For a valid decoder, set
+\begin{align}
+ d_i(a)&=\min_{j\in B(a)}\KL(P_i\Vert P_j),\\
+ D_i&=\max_{a\in\cD_i}d_i(a),&
+ D_i^{\rm sep}&=\min_{j:\theta_j\ne\theta_i}\KL(P_i\Vert P_j).
+ \label{eq:rates}
+\end{align}
+There are only $2^{|\calC|}$ decoders. No optimization over observation
+allocation appears because there is exactly one pre-repair channel.
+
+\begin{theorem}[Decoder cost coefficient]\label{thm:main}
+Under Assumption~\ref{ass:repair}, as $\delta\downarrow0$,
+\begin{equation}\label{eq:main}
+ \frac{J_i^*(\delta)}{L_\delta}\longrightarrow\frac{g_i}{D_i},
+ \qquad
+ \frac{J_i^{\rm sep}(\delta)}{L_\delta}\longrightarrow
+ \frac{g_i}{D_i^{\rm sep}}\quad\text{for every }i.
+\end{equation}
+A single sequence of implementable joint policies attains the joint
+coefficients simultaneously in all environments. If a decoder is valid in
+every environment, the joint coefficient is zero and a policy of uniformly
+bounded expected cost exists for all sufficiently small $\delta$.
+\end{theorem}
+Because the constant decoder $a(C)=\theta_i$ is valid in $i$,
+$D_i\ge D_i^{\rm sep}$ and joint repair cannot have a larger leading
+coefficient. This comparison does not say that a finite-$\delta$ cost ratio
+equals the asymptotic coefficient ratio.
+
+\subsection{Three environments and same-label exclusion}\label{sec:example}
+Take Bernoulli laws with
+\begin{equation}\label{eq:example}
+ (p_1,p_2,p_3)=(0.5,0.9,0.6),\quad
+ (q_1,q_2,q_3)=(0.8,0.2,0.2),\quad
+ (\theta_1,\theta_2,\theta_3)=(0,0,1),\quad g_i=1.
+\end{equation}
+Here $q_i$ denotes a post-repair mean, whereas $q$ without a subscript denotes
+the independent repair success probability.
+The classes are $C_A=\{1\}$ and $C_B=\{2,3\}$.
+Listing decoders by $(a(C_A),a(C_B))$ gives
+\begin{center}
+\begin{tabular}{ccl}
+\toprule
+Decoder & $B(a)$ & Valid environments\\
+\midrule
+$(0,0)$ & $\{3\}$ & $1,2$\\
+$(0,1)$ & $\{2\}$ & $1,3$\\
+$(1,0)$ & $\{1,3\}$ & $2$\\
+$(1,1)$ & $\{1,2\}$ & $3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Under $E_1$, the best decoder is $(0,1)$. It excludes $E_2$, which shares
+$E_1$'s old label, while retaining the opposite-label $E_3$ for post-repair
+discrimination. Direct old-label certification instead must exclude $E_3$.
+For Bernoulli means,
+\[
+ \KL(\Bern(p)\Vert\Bern(r))
+ =p\log(p/r)+(1-p)\log((1-p)/(1-r)).
+\]
+Thus
+\begin{align*}
+D_1&=\KL(\Bern(0.5)\Vert\Bern(0.9))=0.510825623766\ldots,\\
+D_1^{\rm sep}&=\KL(\Bern(0.5)\Vert\Bern(0.6))=0.020410997260\ldots,\\
+\frac{g_1}{D_1}&=1.957615188971\ldots,\qquad
+\frac{g_1}{D_1^{\rm sep}}=48.993196523204\ldots,\\
+\frac{J_1^{\rm sep}(\delta)}{J_1^*(\delta)}
+ &\longrightarrow 25.026980174255\ldots.
+\end{align*}
+The other environments and their best decoders are calculated in
+Table~\ref{tab:analytic}. These values are generated from the model file.
+
+\begin{table}[ht]
+\centering\small\input{tables/analytic_table}
+\caption{Analytic decoder coefficients for \eqref{eq:example}. Costs have
+$g_i=1$. Decoder coordinates follow $(C_A,C_B)$.}\label{tab:analytic}
+\end{table}
+
+\subsection{Partition boundaries}
+\begin{corollary}[Preservation, erasure, and refinement]\label{cor:partition}
+Under the theorem's assumptions:
+\begin{enumerate}
+\item If every post-repair class has a constant old label, a universally valid
+decoder exists, $D_i=+\infty$, and bounded expected joint cost is achievable.
+\item If all post-repair laws are equal, $D_i=D_i^{\rm sep}$ for every $i$.
+\item Refining the post-repair partition while keeping the pre-repair experiment
+and labels fixed cannot decrease $D_i$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+For the first statement, assign each class its common label. No environment
+invalidates that decoder. For the second, a decoder on one class is a constant
+label, so its invalidating set is exactly the opposite-label set.
+For the third, lift any coarse decoder to a finer partition by assigning the
+parent class's value to each child. Its invalidating set stays unchanged, while
+the finer partition may allow additional decoders. Maximizing over that larger
+set cannot reduce the rate.
+\end{proof}
+Partition equality here is exact. Two nearly equal but distinct post laws
+remain separate classes in the asymptotic theorem, although distinguishing
+them at practical deadlines can be expensive in time.

@@ -1,0 +1,23 @@
+Certification coefficients and fully charged finite protocol complete
+Original-fixture sensitivity repair_cost complete
+Original-fixture sensitivity repair_success complete
+Original-fixture sensitivity verify_accuracy complete
+Original-fixture sensitivity horizon complete
+Three-environment independent enumeration h=0: 2 trees
+Three-environment independent enumeration h=1: 12 trees
+Three-environment independent enumeration h=2: 230 trees
+Three-environment independent enumeration h=3: 61872 trees
+{
+  "certification_error_below_delta": true,
+  "maximum_original_output_difference": 2.2737367544323206e-13,
+  "timeout_note": "Unresolved mass is reported separately from normalization residual",
+  "original_enumeration_cases": 12,
+  "largest_original_policy_count": 61872,
+  "gate_half_value": 0.834144,
+  "gate_095_value": 0.834144,
+  "finite_E1_cost_ratio": 22.682079405617905,
+  "elapsed_seconds": 12.550894302000415,
+  "certification_arithmetic": "floating point with stable binomial tails",
+  "bayes_arithmetic": "exact fractions.Fraction",
+  "original_python_repository_available": false
+}
