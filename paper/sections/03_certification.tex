@@ -24,7 +24,9 @@ the pre-repair stream and repair trials conditional on $i$. Distinct $Q_i$
 need not exist for every pair. For simplicity all $Q_i$ have full support.
 \item All action choices use observed data and independent policy randomization.
 Accounting costs are not additional signals. All slots up to the prescribed
-deadline are accounted for, and a declaration is produced by that deadline.
+deadline are accounted for, and a binary old-label declaration is produced by
+that deadline (no abstention; any timeout is charged and mapped to an
+arbitrary label).
 \end{enumerate}
 \end{assumption}
 The cost $\kappa_i$ is the total cost of a repair slot, not an extra fee to
@@ -67,6 +69,8 @@ For a valid decoder, set
  D_i^{\rm sep}&=\min_{j:\theta_j\ne\theta_i}\KL(P_i\Vert P_j).
  \label{eq:rates}
 \end{align}
+We use the convention that an empty minimum is $+\infty$: a universally valid
+decoder ($B(a)=\varnothing$) has $d_i(a)=+\infty$.
 There are only $2^{|\calC|}$ decoders. No optimization over observation
 allocation appears because there is exactly one pre-repair channel.
 
@@ -124,7 +128,7 @@ Thus
 D_1&=\KL(\Bern(0.5)\Vert\Bern(0.9))=0.510825623766\ldots,\\
 D_1^{\rm sep}&=\KL(\Bern(0.5)\Vert\Bern(0.6))=0.020410997260\ldots,\\
 \frac{g_1}{D_1}&=1.957615188971\ldots,\qquad
-\frac{g_1}{D_1^{\rm sep}}=48.993196523204\ldots,\\
+\frac{g_1}{D_1^{\rm sep}}&=48.993196523204\ldots,\\
 \frac{J_1^{\rm sep}(\delta)}{J_1^*(\delta)}
  &\longrightarrow 25.026980174255\ldots.
 \end{align*}
