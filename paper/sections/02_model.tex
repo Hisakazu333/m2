@@ -1,5 +1,20 @@
 \section{Finite-horizon representation intervention}
 \label{sec:model}
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/fig_contracts.pdf}
+\caption{Two contracts over one intervention model. A repair experiment
+produces pre- and post-repair observations through the same physical
+kernels; the evaluation objective then branches. Under the old-label
+contract, the agent must certify a property of the previously installed
+representation at fixed confidence, and post-repair observations may rule
+out alternatives that the pre-repair channel could not. Under the
+current-label contract, the agent controls the installed representation
+under a finite task deadline, comparing task loss, action price, remaining
+time, and future information by Bayes calculations. The contracts share
+the kernels but not the objective.}
+\label{fig:contracts}
+\end{figure}
 \subsection{Environment, representation, and adequacy}
 Let $I\in\cE=\{1,\ldots,K\}$ be an unknown environment drawn once from a known
 prior $\mu$. It remains fixed during deployment. Candidate representations form
